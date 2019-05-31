@@ -1,0 +1,109 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Model;
+
+import javafx.collections.ObservableList;
+
+/**
+ *
+ * @author bscha
+ */
+public class Product {
+
+    // Instance Variables
+//    private ObservableList associatedParts;
+    private int productId;
+    private String productName;
+    private double productPrice;
+    private int productStock;
+    private int productMin;
+    private int productMax;
+
+    public Product(int productId, String productName, double productPrice, int productStock, int productMin, int productMax) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productStock = productStock;
+        this.productMin = productMin;
+        this.productMax = productMax;
+    }
+    
+    
+    
+    
+//    // Associated Parts
+//    public void addAssociatedPart(Part associatedPart){
+//        // Do something
+//    }
+//    
+//    public void deleteAssociatedPart(Part associatedPart){
+//        // Do something
+//    }
+//    
+//    // Duplicate from getter method?
+//    public ObservableList getAllAssociatedParts(){
+//        return this.associatedParts;
+//    }
+    
+
+    // Setter Methods
+    public void setProductId(int productId){
+       this.productId = productId;   
+    }
+    
+    public void setProductName(String productName){
+        this.productName = productName;
+    }
+    
+    public void setProductPrice(double productPrice){
+        this.productPrice = productPrice;
+    }
+    
+    public void setProductStock(int productStock){
+        this.productStock = productStock;
+    }
+    
+    public void setProductMin(int productMin){
+        this.productMin = productMin;
+    }
+    
+    public void setProductMax(int productMax){
+        this.productMax = productMax;
+    }
+    
+    // Getter Methods
+//    public ObservableList getAssociatedParts(){
+//        // Do something here, too.
+//        return this.associatedParts; // this is not right lol
+//    }
+    
+    public int getProductId(){
+        return this.productId;
+    }
+    
+    public String getProductName(){
+        return this.productName;
+    }
+    
+    public double getProductPrice(){
+        return this.productPrice;
+    }
+    
+    public int getProductStock(){
+        return this.productStock;
+    }
+    
+    public int getProductMin(){
+        return this.productMin;
+    }
+    
+    public int getProductMax(){
+        return this.productMax;
+    }
+    
+    
+    
+}
