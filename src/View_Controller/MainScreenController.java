@@ -5,6 +5,9 @@
  */
 package View_Controller;
 
+import Model.Inventory;
+import Model.Part;
+import Model.Product;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -24,11 +28,11 @@ import javafx.stage.Stage;
 public class MainScreenController implements Initializable {
     // Instance Variables for Parts
     @FXML private Label partsLabel;
-    @FXML private TableView partsTableView;
-    @FXML private TableColumn partsIdTableColumn;
-    @FXML private TableColumn partsNameTableColumn;
-    @FXML private TableColumn partsInventoryTableColumn;
-    @FXML private TableColumn partsPriceTableColumn;
+    @FXML private TableView<Part> partsTableView;
+    @FXML private TableColumn<Part, Integer> partsIdTableColumn;
+    @FXML private TableColumn<Part, String> partsNameTableColumn;
+    @FXML private TableColumn<Part, Integer> partsInventoryTableColumn;
+    @FXML private TableColumn<Part, Double> partsPriceTableColumn;
     @FXML private Button partsSearchButton;
     @FXML private TextField partsSearchTextField;
     @FXML private Button partsAddButton;
@@ -37,11 +41,11 @@ public class MainScreenController implements Initializable {
    
     // Instance Variables for Products
     @FXML private Label productsLabel;
-    @FXML private TableView productsTableView;
-    @FXML private TableColumn productsIdTableColumn;
-    @FXML private TableColumn productsNameTableColumn;
-    @FXML private TableColumn productsInventoryTableColumn;
-    @FXML private TableColumn productsPriceTableColumn;
+    @FXML private TableView<Product> productsTableView;
+    @FXML private TableColumn<Product, Integer> productsIdTableColumn;
+    @FXML private TableColumn<Product, String> productsNameTableColumn;
+    @FXML private TableColumn<Product, Integer> productsInventoryTableColumn;
+    @FXML private TableColumn<Product, Double> productsPriceTableColumn;
     @FXML private Button productsSearchButton;
     @FXML private TextField productsSearchTextField;
     @FXML private Button productsAddButton;
@@ -59,6 +63,11 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        partsTableView.setItems(Inventory.getAllParts());
+        partsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
+        partsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
+        partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
+        partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));   
     }  
     
     // Add button action

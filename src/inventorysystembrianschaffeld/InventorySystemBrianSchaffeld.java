@@ -6,6 +6,8 @@
 package inventorysystembrianschaffeld;
 
 
+import Model.InHousePart;
+import Model.Inventory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,7 +36,15 @@ public class InventorySystemBrianSchaffeld extends Application {
      */
     public static void main(String[] args) {
         
-        // Create data here
+        // Create data here  partId, partName, partPrice, partStock, partMin, partMax
+        InHousePart a = new InHousePart(1, "Part A", 9.99, 10, 1, 10);
+        InHousePart b = new InHousePart(2, "Part B", 19.99, 20, 11, 101);
+        InHousePart c = new InHousePart(3, "Part C", 29.99, 30, 21, 120);
+        
+        Inventory.addPart(a);
+        Inventory.addPart(b);
+        Inventory.addPart(c);
+        
         
         launch(args);
 

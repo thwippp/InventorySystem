@@ -8,7 +8,7 @@ package Model;
  *
  * @author bscha
  */
-abstract class Part {
+public abstract class Part {
 
     // Instance Variables
     // protected so that subclasses can use these variables
@@ -21,7 +21,6 @@ abstract class Part {
     
     
     // Constructor
-
     public Part(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
         this.partId = partId;
         this.partName = partName;
@@ -30,55 +29,54 @@ abstract class Part {
         this.partMin = partMin;
         this.partMax = partMax;
     }
-    
-    // Setter Methods
-    public void setPartId(int partId){
+
+    public int getPartId() {
+        return partId;
+    }
+
+    public void setPartId(int partId) {
         this.partId = partId;
     }
-    
-    public void setPartName(String partName){
+
+    public String getPartName() {
+        return partName;
+    }
+
+    public void setPartName(String partName) {
         this.partName = partName;
     }
-    
-    public void setPartPrice(double partPrice){
-        this.partPrice = partPrice;                
+
+    public double getPartPrice() {
+        return partPrice;
     }
-    
-    public void setPartStock(int partStock){
+
+    public void setPartPrice(double partPrice) {
+        this.partPrice = partPrice;
+    }
+
+    public int getPartStock() {
+        return partStock;
+    }
+
+    public void setPartStock(int partStock) {
         this.partStock = partStock;
     }
-    
-    public void setPartMin(int partMin){
+
+    public int getPartMin() {
+        return partMin;
+    }
+
+    public void setPartMin(int partMin) {
         this.partMin = partMin;
     }
-    
-    public void setPartMax(int partMax){
+
+    public int getPartMax() {
+        return partMax;
+    }
+
+    public void setPartMax(int partMax) {
         this.partMax = partMax;
     }
+ 
     
-    
-    // Getter Methods
-    public int getPartId(){
-        return this.partId;
-    }
-    
-    public String getPartName(){
-        return this.partName;        
-    }
-    
-    public double getPartPrice(){
-        return this.partPrice;
-    }
-    
-    public int getPartStock(){
-        return this.partStock;
-    }
-    
-    public int getPartMin(){
-        return this.partMin;
-    }
-    
-    public int getPartMax(){
-        return this.partMax;
-    }
 }

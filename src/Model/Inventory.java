@@ -5,6 +5,7 @@
  */
 package Model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,8 +15,8 @@ import javafx.collections.ObservableList;
 public class Inventory {
     
 // Do something fancy here
-private ObservableList<Part> allParts;
-private ObservableList<Product> allProducts;
+private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+private static ObservableList<Product> allProducts  = FXCollections.observableArrayList();
 
 
 // Setters
@@ -27,12 +28,14 @@ private ObservableList<Product> allProducts;
 + updateProduct(int:index, product:Product):void 
 */
 
-public void addPart(Part part){
+public static void addPart(Part part){
     // do stuff
+    allParts.add(part);
 }
 
-public void addProduct(Product product){
+public static void addProduct(Product product){
     // do stuff
+    allProducts.add(product);
 }
 
 public void updatePart(int index, Part part){
@@ -86,14 +89,13 @@ public void deleteProduct(Product product){
 //    // return Product
 //}
 //
-//public ObservableList<Part> getAllParts(){
-//    // return Parts
-//}
-//
-//public ObservableList<Product> getAllProducts(){
-//    // return Products
-//}
+public static ObservableList<Part> getAllParts(){
+   return allParts;
+}
+
+public static ObservableList<Product> getAllProducts(){
+    return allProducts;
+}
     
-    
-    
+      
 }
