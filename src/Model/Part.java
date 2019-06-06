@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Model;
-
 /**
  *
  * @author bscha
@@ -31,8 +30,6 @@ abstract class Part {
         this.partMin = partMin;
         this.partMax = partMax;
     }
-    
-    
     
     // Setter Methods
     public void setPartId(int partId){

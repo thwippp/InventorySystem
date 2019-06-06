@@ -17,8 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.ProductScreenController">
    <children>
       <HBox>
          <children>
@@ -42,77 +41,77 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
-                  <Label text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Label fx:id="productIdLabel" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Label fx:id="productNameLabel" text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Inv" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Label fx:id="productInventoryLabel" text="Inv" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Price/Cost" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <Label fx:id="productPriceLabel" text="Price/Cost" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <Label fx:id="productMinLabel" text="Min" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Company Name" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                  <Label fx:id="productCompanyNameLabel" text="Company Name" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="productIdTextField" promptText="Product Id" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="productNameTextField" promptText="Product Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="productInventoryTextField" promptText="Product Inventory" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="productPriceTextField" promptText="Product Price/Cost" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="productMinTextField" promptText="Product Min" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <TextField fx:id="productCompanyNameTextField" promptText="Product Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <Label text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                  <Label fx:id="productMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <TextField fx:id="productMaxTextField" promptText="Product Max" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <Label text="Add Product" GridPane.halignment="CENTER">
+                  <Label fx:id="addProductLabel" text="Add Product" GridPane.halignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -122,12 +121,12 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="In-House">
+                        <RadioButton fx:id="productInHouseRadioButton" mnemonicParsing="false" text="In-House">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Outsourced">
+                        <RadioButton fx:id="productOutsourcedRadioButton" mnemonicParsing="false" text="Outsourced">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -139,12 +138,12 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                      <children>
-                        <Button mnemonicParsing="false" text="Save">
+                        <Button fx:id="productSaveButton" mnemonicParsing="false" text="Save">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Button>
-                        <Button mnemonicParsing="false" text="Cancel">
+                        <Button fx:id="productCancelButton" mnemonicParsing="false" text="Cancel">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -162,26 +161,26 @@
                      <children>
                         <VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0">
                            <children>
-                              <Label fx:id="labelParts" text="Parts">
+                              <Label fx:id="partsLabel" text="Parts">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TableView>
+                              <TableView fx:id="partsTableView">
                                 <columns>
-                                  <TableColumn prefWidth="100.0" text="Part ID" />
-                                  <TableColumn prefWidth="100.0" text="Part Name" />
-                                    <TableColumn prefWidth="100.0" text="Inventory Level" />
-                                    <TableColumn prefWidth="150.0" text="Price/Cost per Unit" />
+                                  <TableColumn fx:id="partsIdTableColumn" prefWidth="100.0" text="Part ID" />
+                                  <TableColumn fx:id="partsNameTableColumn" prefWidth="100.0" text="Part Name" />
+                                    <TableColumn fx:id="partsInventoryTableColumn" prefWidth="100.0" text="Inventory Level" />
+                                    <TableColumn fx:id="partsPriceTableColumn" prefWidth="150.0" text="Price/Cost per Unit" />
                                 </columns>
                               </TableView>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Search" />
-                                    <TextField />
+                                    <TextField fx:id="partsSearchTextField" promptText="Search Parts" />
+                                    <Button fx:id="partsSearchButton" mnemonicParsing="false" text="Search" />
                                     <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                       <buttons>
-                                        <Button mnemonicParsing="false" text="Add" />
+                                        <Button fx:id="partsAddButton" mnemonicParsing="false" text="Add" />
                                       </buttons>
                                     </ButtonBar>
                                  </children>
@@ -193,17 +192,17 @@
                         </VBox>
                         <VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0">
                            <children>
-                              <Label fx:id="labelParts1" text="Products">
+                              <Label fx:id="productsLabel" text="Products">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TableView>
+                              <TableView fx:id="productsTableView">
                                  <columns>
-                                    <TableColumn prefWidth="100.0" text="Product ID" />
-                                    <TableColumn prefWidth="100.0" text="Product Name" />
-                                    <TableColumn prefWidth="100.0" text="Inventory Level" />
-                                    <TableColumn prefWidth="100.0" text="Price per Unit" />
+                                    <TableColumn fx:id="productsIdTableColumn" prefWidth="100.0" text="Product ID" />
+                                    <TableColumn fx:id="productsNameTableColumn" prefWidth="100.0" text="Product Name" />
+                                    <TableColumn fx:id="productsInventoryTableColumn" prefWidth="100.0" text="Inventory Level" />
+                                    <TableColumn fx:id="productsPriceTableColumn" prefWidth="100.0" text="Price per Unit" />
                                  </columns>
                               </TableView>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -215,7 +214,7 @@
                                     </Separator>
                                     <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                        <buttons>
-                                          <Button mnemonicParsing="false" text="Delete" />
+                                          <Button fx:id="productsDeleteButton" mnemonicParsing="false" text="Delete" />
                                        </buttons>
                                     </ButtonBar>
                                  </children>

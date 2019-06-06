@@ -26,13 +26,16 @@ public class InventorySystemBrianSchaffeld extends Application {
         
         stage.setScene(scene);
         stage.show();
-        
+                
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        // Create data here
+        
         launch(args);
 
     }

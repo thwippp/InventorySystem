@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.MainScreenController">
    <children>
       <VBox prefHeight="800.0" prefWidth="1200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,28 +20,28 @@
                <children>
                   <VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0">
                      <children>
-                        <Label fx:id="labelParts" text="Parts">
+                        <Label fx:id="partsLabel" text="Parts">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TableView>
+                        <TableView fx:id="partsTableView">
                           <columns>
-                            <TableColumn prefWidth="100.0" text="Part ID" />
-                            <TableColumn prefWidth="100.0" text="Part Name" />
-                              <TableColumn prefWidth="100.0" text="Inventory Level" />
-                              <TableColumn prefWidth="150.0" text="Price/Cost per Unit" />
+                            <TableColumn fx:id="partsIdTableColumn" prefWidth="100.0" text="Part ID" />
+                            <TableColumn fx:id="partsNameTableColumn" prefWidth="100.0" text="Part Name" />
+                              <TableColumn fx:id="partsInventoryTableColumn" prefWidth="100.0" text="Inventory Level" />
+                              <TableColumn fx:id="partsPriceTableColumn" prefWidth="150.0" text="Price/Cost per Unit" />
                           </columns>
                         </TableView>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Search" />
-                              <TextField />
+                              <TextField fx:id="partsSearchTextField" promptText="Search Parts" />
+                              <Button fx:id="partsSearchButton" mnemonicParsing="false" text="Search" />
                               <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                 <buttons>
-                                  <Button mnemonicParsing="false" text="Add" />
-                                    <Button mnemonicParsing="false" text="Modify" />
-                                    <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
+                                  <Button fx:id="partsAddButton" mnemonicParsing="false" text="Add" />
+                                    <Button fx:id="partsModifyButton" mnemonicParsing="false" text="Modify" />
+                                    <Button fx:id="partsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
                                 </buttons>
                               </ButtonBar>
                            </children>
@@ -53,28 +53,28 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
                      <children>
-                        <Label fx:id="labelParts1" text="Products">
+                        <Label fx:id="productsLabel" text="Products">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TableView>
+                        <TableView fx:id="productsTableView">
                            <columns>
-                              <TableColumn prefWidth="100.0" text="Product ID" />
-                              <TableColumn prefWidth="100.0" text="Product Name" />
-                              <TableColumn prefWidth="100.0" text="Inventory Level" />
-                              <TableColumn prefWidth="100.0" text="Price per Unit" />
+                              <TableColumn fx:id="productsIdTableColumn" prefWidth="100.0" text="Product ID" />
+                              <TableColumn fx:id="productsNameTableColumn" prefWidth="100.0" text="Product Name" />
+                              <TableColumn fx:id="productsInventoryTableColumn" prefWidth="100.0" text="Inventory Level" />
+                              <TableColumn fx:id="productsPriceTableColumn" prefWidth="100.0" text="Price per Unit" />
                            </columns>
                         </TableView>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Search" />
-                              <TextField />
+                              <TextField fx:id="productsSearchTextField" promptText="Search Products" />
+                              <Button fx:id="productsSearchButton" mnemonicParsing="false" text="Search" />
                               <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                  <buttons>
-                                    <Button mnemonicParsing="false" text="Add" />
-                                    <Button mnemonicParsing="false" text="Modify" />
-                                    <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
+                                    <Button fx:id="productsAddButton" mnemonicParsing="false" text="Add" />
+                                    <Button fx:id="productsModifyButton" mnemonicParsing="false" text="Modify" />
+                                    <Button fx:id="productsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
                                  </buttons>
                               </ButtonBar>
                            </children>
@@ -88,7 +88,7 @@
             </HBox>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Exit" />
+                <Button fx:id="exitButton" mnemonicParsing="false" onMouseClicked="#exitButtonAction" text="Exit" />
               </buttons>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
