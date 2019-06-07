@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.MainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1200.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.MainScreenController">
    <children>
       <VBox prefHeight="800.0" prefWidth="1200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,20 +27,20 @@
                         </Label>
                         <TableView fx:id="partsTableView">
                           <columns>
-                            <TableColumn fx:id="partsIdTableColumn" prefWidth="100.0" text="Part ID" />
-                            <TableColumn fx:id="partsNameTableColumn" prefWidth="100.0" text="Part Name" />
-                              <TableColumn fx:id="partsInventoryTableColumn" prefWidth="100.0" text="Inventory Level" />
-                              <TableColumn fx:id="partsPriceTableColumn" prefWidth="150.0" text="Price/Cost per Unit" />
+                            <TableColumn fx:id="partsIdTableColumn" prefWidth="135.0" text="Part ID" />
+                            <TableColumn fx:id="partsNameTableColumn" prefWidth="135.0" text="Part Name" />
+                              <TableColumn fx:id="partsInventoryTableColumn" prefWidth="135.0" text="Inventory Level" />
+                              <TableColumn fx:id="partsPriceTableColumn" prefWidth="135.0" text="Price/Cost per Unit" />
                           </columns>
                         </TableView>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
                               <TextField fx:id="partsSearchTextField" promptText="Search Parts" />
-                              <Button fx:id="partsSearchButton" mnemonicParsing="false" text="Search" />
+                              <Button fx:id="partsSearchButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#partsSearchButtonAction" text="Search" />
                               <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                 <buttons>
-                                  <Button fx:id="partsAddButton" mnemonicParsing="false" text="Add" />
-                                    <Button fx:id="partsModifyButton" mnemonicParsing="false" text="Modify" />
+                                  <Button fx:id="partsAddButton" mnemonicParsing="false" onAction="#partsAddButtonAction" text="Add" />
+                                    <Button fx:id="partsModifyButton" mnemonicParsing="false" onAction="#partsModifyButtonAction" text="Modify" />
                                     <Button fx:id="partsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
                                 </buttons>
                               </ButtonBar>
@@ -60,10 +60,10 @@
                         </Label>
                         <TableView fx:id="productsTableView">
                            <columns>
-                              <TableColumn fx:id="productsIdTableColumn" prefWidth="100.0" text="Product ID" />
-                              <TableColumn fx:id="productsNameTableColumn" prefWidth="100.0" text="Product Name" />
-                              <TableColumn fx:id="productsInventoryTableColumn" prefWidth="100.0" text="Inventory Level" />
-                              <TableColumn fx:id="productsPriceTableColumn" prefWidth="100.0" text="Price per Unit" />
+                              <TableColumn fx:id="productsIdTableColumn" prefWidth="135.0" text="Product ID" />
+                              <TableColumn fx:id="productsNameTableColumn" prefWidth="135.0" text="Product Name" />
+                              <TableColumn fx:id="productsInventoryTableColumn" prefWidth="135.0" text="Inventory Level" />
+                              <TableColumn fx:id="productsPriceTableColumn" prefWidth="135.0" text="Price per Unit" />
                            </columns>
                         </TableView>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -72,8 +72,8 @@
                               <Button fx:id="productsSearchButton" mnemonicParsing="false" text="Search" />
                               <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                  <buttons>
-                                    <Button fx:id="productsAddButton" mnemonicParsing="false" text="Add" />
-                                    <Button fx:id="productsModifyButton" mnemonicParsing="false" text="Modify" />
+                                    <Button fx:id="productsAddButton" mnemonicParsing="false" onAction="#productsAddButtonAction" text="Add" />
+                                    <Button fx:id="productsModifyButton" mnemonicParsing="false" onAction="#productsModifyButtonAction" text="Modify" />
                                     <Button fx:id="productsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
                                  </buttons>
                               </ButtonBar>
