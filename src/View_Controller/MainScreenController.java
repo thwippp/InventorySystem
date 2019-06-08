@@ -93,29 +93,36 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         // Get list of parts in Main Screen
         partsTableView.setItems(Inventory.getAllParts());
         partsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
         partsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
         partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+
+//        partsTableView.getSelectionModel().select(Inventory.getFilteredParts("Part C"));
     }
-    
+
     // Parts search button action
-        @FXML
+    @FXML
     void partsSearchButtonAction(ActionEvent event) {
         //TODO
-        // Get search term (dynamically find field based on input type?)
+        // Get search term (dynamically find field based on input type?)-- right now part name
         // Get list of current parts
         // Find parts that match
         // Return parts that match --> add them to the tableview
-        
+
         String searchTerm = partsSearchTextField.getText();
-        ObservableList returnedParts = (ObservableList) Inventory.getAllParts().get(Integer.parseInt(searchTerm));
-        
-        System.out.println(returnedParts);
-        
+
+        if (searchTerm.equals("")) {
+            // Resets table
+            partsTableView.setItems(Inventory.getAllParts());
+        } else {
+
+            partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
+        }
+
 //        if(foundParts.isEmpty()) {
 //            Alert alert = new Alert(Alert.AlertType.ERROR);
 //            alert.initModality(Modality.APPLICATION_MODAL);

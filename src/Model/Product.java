@@ -30,10 +30,7 @@ public class Product {
         this.productMin = productMin;
         this.productMax = productMax;
     }
-    
-    
-    
-    
+
 //    // Associated Parts
 //    public void addAssociatedPart(Part associatedPart){
 //        // Do something
@@ -47,63 +44,58 @@ public class Product {
 //    public ObservableList getAllAssociatedParts(){
 //        return this.associatedParts;
 //    }
-    
-
     // Setter Methods
-    public void setProductId(int productId){
-       this.productId = productId;   
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
-    
-    public void setProductName(String productName){
+
+    public void setProductName(String productName) {
         this.productName = productName;
     }
-    
-    public void setProductPrice(double productPrice){
+
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
-    
-    public void setProductStock(int productStock){
+
+    public void setProductStock(int productStock) {
         this.productStock = productStock;
     }
-    
-    public void setProductMin(int productMin){
+
+    public void setProductMin(int productMin) {
         this.productMin = productMin;
     }
-    
-    public void setProductMax(int productMax){
+
+    public void setProductMax(int productMax) {
         this.productMax = productMax;
     }
-    
+
     // Getter Methods
 //    public ObservableList getAssociatedParts(){
 //        // Do something here, too.
 //        return this.associatedParts; // this is not right lol
 //    }
-    
-    public int getProductId(){
+    public int getProductId() {
         return this.productId;
     }
-    
-    public String getProductName(){
+
+    public String getProductName() {
         return this.productName;
     }
-    
-    public double getProductPrice(){
+
+    public double getProductPrice() {
         return this.productPrice;
     }
-    
-    public int getProductStock(){
+
+    public int getProductStock() {
         return this.productStock;
     }
-    
-    public int getProductMin(){
+
+    public int getProductMin() {
         return this.productMin;
     }
-    
-    public int getProductMax(){
+
+    public int getProductMax() {
         return this.productMax;
     }
-    
-    
-    
+
 }

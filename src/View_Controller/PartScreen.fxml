@@ -14,147 +14,147 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1200.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.PartScreenController">
-   <children>
-      <StackPane prefHeight="400.0" prefWidth="1200.0">
-         <children>
-            <GridPane hgap="10.0" prefHeight="400.0" prefWidth="600.0" vgap="10.0" StackPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="150.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="450.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-               <children>
-                  <Label fx:id="partIdLabel" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="partNameLabel" text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="partInventoryLabel" text="Inv" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="partPriceLabel" text="Price/Cost" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="partMinLabel" text="Min" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="partCompanyNameLabel" text="Company Name" GridPane.halignment="CENTER" GridPane.rowIndex="7">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="partIdTextField" promptText="Part ID" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <TextField fx:id="partNameTextField" promptText="Part Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <TextField fx:id="partInventoryTextField" promptText="Part Inventory" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <TextField fx:id="partPriceTextField" promptText="Part Price/Cost" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <TextField fx:id="partMinTextField" promptText="Part Price Min" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <TextField fx:id="partCompanyNameTextField" promptText="Part Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <Label fx:id="partMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="partMaxTextField" promptText="Part Price Max" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
-                  <Label fx:id="addPartLabel" text="Add Part" GridPane.halignment="CENTER">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                     <children>
-                        <RadioButton fx:id="partInHouseRadioButton" mnemonicParsing="false" text="In-House">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="partOutsourcedRadioButton" mnemonicParsing="false" text="Outsourced">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </RadioButton>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
-                     <children>
-                        <Button fx:id="partSaveButton" mnemonicParsing="false" onAction="#partSaveButtonAction" text="Save">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </Button>
-                        <Button fx:id="partCancelButton" mnemonicParsing="false" onAction="#partCancelButtonAction" text="Cancel">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-               <StackPane.margin>
-                  <Insets />
-               </StackPane.margin>
-            </GridPane>
-         </children>
-      </StackPane>
-   </children>
+    <children>
+        <StackPane prefHeight="400.0" prefWidth="1200.0">
+            <children>
+                <GridPane hgap="10.0" prefHeight="400.0" prefWidth="600.0" vgap="10.0" StackPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="450.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Label fx:id="partIdLabel" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="partNameLabel" text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="partInventoryLabel" text="Inv" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="partPriceLabel" text="Price/Cost" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="partMinLabel" text="Min" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="partCompanyNameLabel" text="Company Name" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <TextField fx:id="partIdTextField" promptText="Part ID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <TextField fx:id="partNameTextField" promptText="Part Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <TextField fx:id="partInventoryTextField" promptText="Part Inventory" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <TextField fx:id="partPriceTextField" promptText="Part Price/Cost" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <TextField fx:id="partMinTextField" promptText="Part Price Min" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <TextField fx:id="partCompanyNameTextField" promptText="Part Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <Label fx:id="partMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <TextField fx:id="partMaxTextField" promptText="Part Price Max" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </TextField>
+                        <Label fx:id="addPartLabel" text="Add Part" GridPane.halignment="CENTER">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                            <children>
+                                <RadioButton fx:id="partInHouseRadioButton" mnemonicParsing="false" text="In-House">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="partOutsourcedRadioButton" mnemonicParsing="false" text="Outsourced">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </RadioButton>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+                            <children>
+                                <Button fx:id="partSaveButton" mnemonicParsing="false" onAction="#partSaveButtonAction" text="Save">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </Button>
+                                <Button fx:id="partCancelButton" mnemonicParsing="false" onAction="#partCancelButtonAction" text="Cancel">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </Button>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                    <StackPane.margin>
+                        <Insets />
+                    </StackPane.margin>
+                </GridPane>
+            </children>
+        </StackPane>
+    </children>
 </AnchorPane>

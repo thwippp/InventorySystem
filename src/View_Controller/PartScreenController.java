@@ -83,7 +83,6 @@ public class PartScreenController implements Initializable {
         // Do Some stuff
         // Get fields (can do some checking here
         // call new InHouse or Outsourced Part Constructor
-        
 
         // Go back to main screen
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));

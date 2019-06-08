@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Model;
+
 /**
  *
  * @author bscha
@@ -18,8 +19,7 @@ public abstract class Part {
     protected int partStock;
     protected int partMin;
     protected int partMax;
-    
-    
+
     // Constructor
     public Part(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
         this.partId = partId;
@@ -77,6 +77,5 @@ public abstract class Part {
     public void setPartMax(int partMax) {
         this.partMax = partMax;
     }
- 
-    
+
 }

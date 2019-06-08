@@ -7,17 +7,21 @@ package Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.nashorn.internal.runtime.regexp.RegExp;
+import jdk.nashorn.internal.runtime.regexp.RegExpMatcher;
 
 /**
  *
  * @author bscha
  */
 public class Inventory {
-    
-// Do something fancy here
-private static ObservableList<Part> allParts = FXCollections.observableArrayList();
-private static ObservableList<Product> allProducts  = FXCollections.observableArrayList();
 
+// Do something fancy here
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
 
 // Setters
 /*
@@ -26,41 +30,41 @@ private static ObservableList<Product> allProducts  = FXCollections.observableAr
 
 + updatePart(int:index, part:Part):void 
 + updateProduct(int:index, product:Product):void 
-*/
+     */
+    public static void addPart(Part part) {
+        // do stuff
+        allParts.add(part);
+    }
 
-public static void addPart(Part part){
-    // do stuff
-    allParts.add(part);
-}
+    public static void addFilteredPart(Part part) {
+        filteredParts.add(part);
+    }
 
-public static void addProduct(Product product){
-    // do stuff
-    allProducts.add(product);
-}
+    public static void addProduct(Product product) {
+        // do stuff
+        allProducts.add(product);
+    }
 
-public void updatePart(int index, Part part){
-    // do stuff
-}
+    public void updatePart(int index, Part part) {
+        // do stuff
+    }
 
-public void updateProduct(int index, Product product){
-    // do stuff
-}
-
+    public void updateProduct(int index, Product product) {
+        // do stuff
+    }
 
 // Get-Rid-Of-Ers
 /*
 + deletePart(part:Part):void 
 + deleteProduct(product:Product):void
-*/
+     */
+    public void deletePart(Part part) {
+        // do stuff
+    }
 
-public void deletePart(Part part){
-    // do stuff
-}
-
-public void deleteProduct(Product product){
-    // do stuff
-}
-
+    public void deleteProduct(Product product) {
+        // do stuff
+    }
 
 // Getters
 /*
@@ -70,8 +74,7 @@ public void deleteProduct(Product product){
 + lookupProduct(productName:String):ObservableList<Product>
 + getAllParts():ObservableList<Part>
 + getAllProducts():ObservableList<Product>
-*/
-
+     */
 // Commented out because I don't know what to return yet
 //public Part lookupPart(int partId){
 //    //  return Part
@@ -89,13 +92,26 @@ public void deleteProduct(Product product){
 //    // return Product
 //}
 //
-public static ObservableList<Part> getAllParts(){
-   return allParts;
-}
+    public static ObservableList<Part> getAllParts() {
+        return allParts;
+    }
 
-public static ObservableList<Product> getAllProducts(){
-    return allProducts;
-}
-    
-      
+    public static ObservableList<Part> getFilteredParts(String partName) {
+
+//    boolean pn = partName.matches(".*"+partName+".*");
+        for (Part part : Inventory.getAllParts()) {
+
+            if (part.getPartName().equals(partName)) {
+                Inventory.addFilteredPart(part);
+                /*return filteredParts;*/
+            }
+        }
+        return filteredParts;
+//    return null;
+    }
+
+    public static ObservableList<Product> getAllProducts() {
+        return allProducts;
+    }
+
 }

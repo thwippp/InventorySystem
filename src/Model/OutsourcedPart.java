@@ -9,24 +9,24 @@ package Model;
  *
  * @author bscha
  */
-public class OutsourcedPart extends Part{
-    
+public class OutsourcedPart extends Part {
+
     // Instance variables
     private String companyName;
-    
+
     // NB created this constructor because it didn't like mine
     public OutsourcedPart(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
         super(partId, partName, partPrice, partStock, partMin, partMax);  // don't know where this comes from
     }
-    
+
     // Setters
-    public void setCompanyName(String companyName){
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-    
+
     // Getters
-    public String getCompanyName(){
+    public String getCompanyName() {
         return this.companyName;
     }
-    
+
 }

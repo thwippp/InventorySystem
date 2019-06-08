@@ -20,7 +20,7 @@ and open the template in the editor.
 }
 
 .root {
- -fx-background-color: default-primary-color;   
+    -fx-background-color: default-primary-color;   
 }
 
 .button {
@@ -29,7 +29,7 @@ and open the template in the editor.
     -fx-text-fill: light-primary-color;
     -fx-background-color: accent-color;
     -fx-border-color: dark-primary-color;
-    -fx-border-width: 3px;
+    -fx-border-width: 2px;
     -fx-border-radius: 5;
     -fx-background-insets: 1;
 }
@@ -47,7 +47,7 @@ and open the template in the editor.
 }
 
 .radio-button{
-     -fx-font: 12px "Roboto", "sans-serif";
+    -fx-font: 12px "Roboto", "sans-serif";
     -fx-font-weight: bold;
     -fx-text-fill: primary-text-color;
 }
@@ -56,6 +56,22 @@ and open the template in the editor.
     -fx-font: 12px "Roboto", "sans-serif";
     -fx-text-fill: primary-text-color;
     -fx-background-color: light-primary-color;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: accent-color; 
+    -fx-text-background-color: light-primary-color;
+    -fx-border-color: dark-primary-color;
+    -fx-border-width: .1px;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell{
+    -fx-background-color: light-primary-color;
+    -fx-border-color: divider-color;
+    -fx-border-width: .1px;
+    -fx-table-cell-border-color: transparent;
+
 }
 
 

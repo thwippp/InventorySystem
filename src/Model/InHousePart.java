@@ -9,16 +9,15 @@ package Model;
  *
  * @author bscha
  */
-public class InHousePart extends Part{
-    
+public class InHousePart extends Part {
+
     private int machineId;  // make final?
 
     // NB created this constructor because it didn't like mine
     public InHousePart(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
         super(partId, partName, partPrice, partStock, partMin, partMax);  // don't know where this comes from
     }
-    
-    
+
 //    public InHousePart(int partId, String partName, double partPrice, int partStock, int partMin, int partMax){
 //        this.partId = partId;
 //        this.partName = partName;
@@ -27,7 +26,6 @@ public class InHousePart extends Part{
 //        this.partMin = partMin;
 //        this.partMax = partMax;        
 //    }
-    
 //    public InHousePart(){
 //        this.partId = 0;
 //        this.partName = "";
@@ -36,16 +34,14 @@ public class InHousePart extends Part{
 //        this.partMin = 0;
 //        this.partMax = 0;   
 //    }
-    
     // Setters
-    public void setMachineId(int machineId){
+    public void setMachineId(int machineId) {
         this.machineId = machineId;
     }
-    
+
     // Getters
-    public int getMachineId(){
+    public int getMachineId() {
         return this.machineId;
     }
-    
-    
+
 }
