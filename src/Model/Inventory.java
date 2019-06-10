@@ -7,6 +7,7 @@ package Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import jdk.nashorn.internal.runtime.regexp.RegExp;
 import jdk.nashorn.internal.runtime.regexp.RegExpMatcher;
 
@@ -24,13 +25,6 @@ public class Inventory {
     private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
 
 // Setters
-/*
-+ addPart(part:Part):void 
-+ addProduct(product:Product):void 
-
-+ updatePart(int:index, part:Part):void 
-+ updateProduct(int:index, product:Product):void 
-     */
     public static void addPart(Part part) {
         // do stuff
         allParts.add(part);
@@ -45,24 +39,25 @@ public class Inventory {
         allProducts.add(product);
     }
 
-    public void updatePart(int index, Part part) {
+    public static void updatePart(int index, Part part) {
         // do stuff
     }
 
-    public void updateProduct(int index, Product product) {
+    public static void updateProduct(int index, Product product) {
         // do stuff
     }
 
 // Get-Rid-Of-Ers
-/*
-+ deletePart(part:Part):void 
-+ deleteProduct(product:Product):void
-     */
-    public void deletePart(Part part) {
+    public static void deletePart(Part part) {
         // do stuff
+
     }
 
-    public void deleteProduct(Product product) {
+    public static void clearFilteredParts() {
+        filteredParts.clear();
+    }
+
+    public static void deleteProduct(Product product) {
         // do stuff
     }
 
@@ -75,12 +70,12 @@ public class Inventory {
 + getAllParts():ObservableList<Part>
 + getAllProducts():ObservableList<Product>
      */
-// Commented out because I don't know what to return yet
+// TODO-- Commented out because I don't know what to return yet
 //public Part lookupPart(int partId){
 //    //  return Part
 //}
 //
-//public Product looupProduct(int productId){
+//public Product lookupProduct(int productId){
 //    // return Product
 //}
 //
@@ -97,17 +92,15 @@ public class Inventory {
     }
 
     public static ObservableList<Part> getFilteredParts(String partName) {
+        clearFilteredParts();
 
-//    boolean pn = partName.matches(".*"+partName+".*");
         for (Part part : Inventory.getAllParts()) {
 
             if (part.getPartName().equals(partName)) {
                 Inventory.addFilteredPart(part);
-                /*return filteredParts;*/
             }
         }
         return filteredParts;
-//    return null;
     }
 
     public static ObservableList<Product> getAllProducts() {

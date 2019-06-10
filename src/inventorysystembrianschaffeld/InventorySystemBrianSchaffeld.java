@@ -28,6 +28,7 @@ public class InventorySystemBrianSchaffeld extends Application {
 
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Inventory"); // TODO-- catchy name
 
     }
 
@@ -37,9 +38,9 @@ public class InventorySystemBrianSchaffeld extends Application {
     public static void main(String[] args) {
 
         // Create data here  partId, partName, partPrice, partStock, partMin, partMax
-        InHousePart a = new InHousePart(1, "Part A", 9.99, 10, 1, 10);
-        InHousePart b = new InHousePart(2, "Part B", 19.99, 20, 11, 101);
-        OutsourcedPart c = new OutsourcedPart(3, "Part C", 29.99, 30, 21, 120);
+        InHousePart a = new InHousePart(1, "Part A", 9.99, 10, 1, 10, 1);
+        InHousePart b = new InHousePart(2, "Part B", 19.99, 20, 11, 101, 2);
+        OutsourcedPart c = new OutsourcedPart(3, "Part C", 29.99, 30, 21, 120, "Company C");
 
         // Adds parts to the ObservableLists/ArrayLists
         Inventory.addPart(a);
@@ -48,7 +49,6 @@ public class InventorySystemBrianSchaffeld extends Application {
 
         // launches program
         launch(args);
-
     }
 
 }

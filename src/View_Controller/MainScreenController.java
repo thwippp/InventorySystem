@@ -117,6 +117,7 @@ public class MainScreenController implements Initializable {
 
         if (searchTerm.equals("")) {
             // Resets table
+            partsTableView.setItems(null);
             partsTableView.setItems(Inventory.getAllParts());
         } else {
 

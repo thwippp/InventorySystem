@@ -44,12 +44,26 @@ and open the template in the editor.
     -fx-font: 10px "Roboto", "sans-serif";
     -fx-font-weight: bold;
     -fx-text-fill: primary-text-color;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
 }
 
-.radio-button{
+.text-field:focused{
+    -fx-border-color: accent-color;
+}
+
+.radio-button {
     -fx-font: 12px "Roboto", "sans-serif";
     -fx-font-weight: bold;
     -fx-text-fill: primary-text-color;
+}
+
+// TODO Can't get the radio selected stuff to work... Idk what I'm doing wrong.
+// https://stackoverflow.com/questions/12038179/javafx-2-0-how-to-change-the-size-of-the-radio-buttons-circle-with-css?rq=1
+// https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/doc-files/cssref.html#togglebutton
+.toggle-button:selected{
+    -fx-background-color: accent-color;
+    -fx-border-color: accent-color;
 }
 
 .table-view{
@@ -71,7 +85,6 @@ and open the template in the editor.
     -fx-border-color: divider-color;
     -fx-border-width: .1px;
     -fx-table-cell-border-color: transparent;
-
 }
 
 

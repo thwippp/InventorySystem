@@ -35,7 +35,7 @@
                                 </TableView>
                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                     <children>
-                                        <TextField fx:id="partsSearchTextField" promptText="Search Parts" />
+                                        <TextField fx:id="partsSearchTextField" onAction="#partsSearchButtonAction" promptText="Search Parts" />
                                         <Button fx:id="partsSearchButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#partsSearchButtonAction" text="Search" />
                                         <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                             <buttons>
