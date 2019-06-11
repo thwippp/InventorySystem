@@ -37,6 +37,14 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
                     <children>
+                        <Label fx:id="addPartLabel" text="Add Part" GridPane.halignment="CENTER">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
                         <Label fx:id="partIdLabel" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -58,6 +66,11 @@
                             </padding>
                         </Label>
                         <Label fx:id="partMinLabel" text="Min" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="partMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
@@ -92,29 +105,16 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </TextField>
-                        <TextField fx:id="partMICNTextField" promptText="Machine Id || Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                        </TextField>
-                        <Label fx:id="partMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                        </Label>
                         <TextField fx:id="partMaxTextField" promptText="Part Price Max" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </TextField>
-                        <Label fx:id="addPartLabel" text="Add Part" GridPane.halignment="CENTER">
+                        <TextField fx:id="partMICNTextField" promptText="Machine Id || Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
+                        </TextField>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                             <children>
                                 <RadioButton fx:id="partInHouseRadioButton" mnemonicParsing="false" onAction="#inHouseRadioButtonPressed" stylesheets="@Style.css" text="In-House">

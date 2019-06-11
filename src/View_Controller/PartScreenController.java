@@ -75,36 +75,74 @@ public class PartScreenController implements Initializable {
     @FXML
     private TextField partMICNTextField;
 
+    private static Part selectedPart;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+// Something like this...
+//        partsTableView.setItems(InHousePart.add(selectedPart));
+
         final ToggleGroup partRadioButtonToggleGroup = new ToggleGroup();
         partInHouseRadioButton.setToggleGroup(partRadioButtonToggleGroup);
         partOutsourcedRadioButton.setToggleGroup(partRadioButtonToggleGroup);
     }
 
-    
+    //
+    public void setModifyPart(Part part) {
+        selectedPart = part;
+        partIdTextField.setText(String.valueOf(selectedPart.getPartId()));
+        partNameTextField.setText(selectedPart.getPartName());
+        partPriceTextField.setText(String.valueOf(selectedPart.getPartPrice()));
+        partInventoryTextField.setText(String.valueOf(selectedPart.getPartStock()));
+        partMinTextField.setText(String.valueOf(selectedPart.getPartMin()));
+        partMaxTextField.setText(String.valueOf(selectedPart.getPartMax()));
+
+        // Checks for the type of part and sets the Machine Id or
+        // Company Name based on the subclass
+        // TODO-- safe casting??? is this way necessary?  Or can I use what I have?
+//        Object obj; 
+//        if (obj instanceof Integer){
+//            Integer objAsInt = (Integer) obj
+//                    // do somthing with 'obAsInt'
+//        }
+// WHATS THE DIFFERENCE?
+//        if(selectedPart instanceof Model.InHousePart){
+        if (Model.InHousePart.class.isInstance(selectedPart)) {
+            partInHouseRadioButton.setSelected(true);
+            partMICNLabel.setText("Machine Id");
+            String value = String.valueOf(((InHousePart) selectedPart).getMachineId());
+            partMICNTextField.setText(value);
+        } else if (Model.OutsourcedPart.class.isInstance(selectedPart)) {
+            partOutsourcedRadioButton.setSelected(true);
+            partMICNLabel.setText("Company Name");
+            String value = ((OutsourcedPart) selectedPart).getCompanyName();
+            partMICNTextField.setText(value);
+        }
+
+    }
+
     // Radio button actions
-    @FXML void inHouseRadioButtonPressed(){
+    @FXML
+    void inHouseRadioButtonPressed() {
         String s = "Machine Id";
         partMICNLabel.setText(s);
         partMICNTextField.setPromptText(s);
     }
-    
-    @FXML void outsourcedRadioButtonPressed(){
+
+    @FXML
+    void outsourcedRadioButtonPressed() {
         String s = "Company Name";
         partMICNLabel.setText(s);
         partMICNTextField.setPromptText(s);
     }
-    
-    // Part save button action
+
     @FXML
-    private void partSaveButtonAction() throws IOException {
-        // Do Some stuff
-        // TODO-- Get fields (can do some checking here
+    private void partSaveButtonAction(Part part) throws IOException {
+
         int id = Integer.parseInt(partIdTextField.getText());
         String name = partNameTextField.getText();
         double price = Double.parseDouble(partPriceTextField.getText());
@@ -113,6 +151,46 @@ public class PartScreenController implements Initializable {
         int max = Integer.parseInt(partMaxTextField.getText());
 //        int mIDCN = Integer.parseInt(partMICNTextField.getText());
 
+        if (partInHouseRadioButton.isSelected()) {
+            int mIDCN = Integer.parseInt(partMICNTextField.getText());
+            part.setPartId(id);
+            part.setPartName(name);
+            part.setPartPrice(price);
+            part.setPartStock(stock);
+            part.setPartMin(min);
+            part.setPartMax(max);
+            ((InHousePart) part).setMachineId(mIDCN);
+            Inventory.updatePart(id, part);
+
+//            InHousePart p = new InHousePart(id, name, price, stock, min, max, mIDCN);
+//            Inventory.addPart(p);
+        } else {
+            String mIDCN = partMICNTextField.getText();
+            OutsourcedPart p = new OutsourcedPart(id, name, price, stock, min, max, mIDCN);
+            Inventory.addPart(p);
+        }
+
+        // Go back to main screen
+        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) partSaveButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    // Part save button action
+    @FXML
+    private void partSaveButtonAction() throws IOException {
+        // Do Some stuff
+        // TODO-- Get fields (can do some checking here
+        // TODO-- Update, don't add a new one...
+        int id = Integer.parseInt(partIdTextField.getText());
+        String name = partNameTextField.getText();
+        double price = Double.parseDouble(partPriceTextField.getText());
+        int stock = Integer.parseInt(partInventoryTextField.getText());
+        int min = Integer.parseInt(partMinTextField.getText());
+        int max = Integer.parseInt(partMaxTextField.getText());
+//        int mIDCN = Integer.parseInt(partMICNTextField.getText());
 
         if (partInHouseRadioButton.isSelected()) {
             int mIDCN = Integer.parseInt(partMICNTextField.getText());
@@ -127,7 +205,7 @@ public class PartScreenController implements Initializable {
         // Go back to main screen
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
         Scene scene = new Scene(root);
-        Stage stage = (Stage) partCancelButton.getScene().getWindow();
+        Stage stage = (Stage) partSaveButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }

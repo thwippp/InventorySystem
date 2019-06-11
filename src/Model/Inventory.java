@@ -30,17 +30,28 @@ public class Inventory {
         allParts.add(part);
     }
 
-    public static void addFilteredPart(Part part) {
-        filteredParts.add(part);
-    }
-
     public static void addProduct(Product product) {
         // do stuff
         allProducts.add(product);
     }
 
+    public static void addFilteredPart(Part part) {
+        filteredParts.add(part);
+    }
+
+    public static void addFilteredProduct(Product product) {
+        filteredProducts.add(product);
+    }
+
     public static void updatePart(int index, Part part) {
         // do stuff
+//        for (Part part : Inventory.getAllParts()) {
+//
+//            if (part.partId().equals(index)) {
+//            
+//            }
+//        }
+
     }
 
     public static void updateProduct(int index, Product product) {
@@ -50,15 +61,18 @@ public class Inventory {
 // Get-Rid-Of-Ers
     public static void deletePart(Part part) {
         // do stuff
+    }
 
+    public static void deleteProduct(Product product) {
+        // do stuff
     }
 
     public static void clearFilteredParts() {
         filteredParts.clear();
     }
 
-    public static void deleteProduct(Product product) {
-        // do stuff
+    public static void clearFilteredProducts() {
+        filteredProducts.clear();
     }
 
 // Getters
@@ -105,6 +119,18 @@ public class Inventory {
 
     public static ObservableList<Product> getAllProducts() {
         return allProducts;
+    }
+
+    public static ObservableList<Product> getFilteredProducts(String productName) {
+        clearFilteredProducts();
+
+        for (Product product : Inventory.getAllProducts()) {
+
+            if (product.getProductName().equals(productName)) {
+                Inventory.addFilteredProduct(product);
+            }
+        }
+        return filteredProducts;
     }
 
 }

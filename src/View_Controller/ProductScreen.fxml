@@ -41,6 +41,14 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
                     <children>
+                        <Label fx:id="addProductLabel" text="Add Product" GridPane.halignment="CENTER">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
                         <Label fx:id="productIdLabel" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -62,6 +70,11 @@
                             </padding>
                         </Label>
                         <Label fx:id="productMinLabel" text="Min" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="productMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
@@ -96,29 +109,16 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </TextField>
-                        <TextField fx:id="productCompanyNameTextField" promptText="Product Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                        </TextField>
-                        <Label fx:id="productMaxLabel" text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                        </Label>
                         <TextField fx:id="productMaxTextField" promptText="Product Max" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </TextField>
-                        <Label fx:id="addProductLabel" text="Add Product" GridPane.halignment="CENTER">
+                        <TextField fx:id="productCompanyNameTextField" promptText="Product Company Name" GridPane.columnIndex="1" GridPane.rowIndex="7">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
+                        </TextField>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                             <children>
                                 <RadioButton fx:id="productInHouseRadioButton" mnemonicParsing="false" text="In-House">
@@ -177,7 +177,7 @@
                                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                             <children>
                                                 <TextField fx:id="partsSearchTextField" promptText="Search Parts" />
-                                                <Button fx:id="partsSearchButton" mnemonicParsing="false" text="Search" />
+                                                <Button fx:id="partsSearchButton" mnemonicParsing="false" onAction="#partsSearchButtonAction" text="Search" />
                                                 <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                                     <buttons>
                                                         <Button fx:id="partsAddButton" mnemonicParsing="false" text="Add" />
@@ -207,14 +207,14 @@
                                         </TableView>
                                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                             <children>
-                                                <Separator prefWidth="225.0">
+                                                <Separator focusTraversable="false" prefWidth="225.0" visible="false">
                                                     <padding>
                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                     </padding>
                                                 </Separator>
                                                 <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                                     <buttons>
-                                                        <Button fx:id="productsDeleteButton" mnemonicParsing="false" text="Delete" />
+                                                        <Button fx:id="productsDeleteButton" mnemonicParsing="false" onAction="#productsDeleteButtonAction" text="Delete" />
                                                     </buttons>
                                                 </ButtonBar>
                                             </children>

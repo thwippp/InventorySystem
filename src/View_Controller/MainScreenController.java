@@ -5,6 +5,7 @@
  */
 package View_Controller;
 
+import Model.InHousePart;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
@@ -101,7 +102,13 @@ public class MainScreenController implements Initializable {
         partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
 
-//        partsTableView.getSelectionModel().select(Inventory.getFilteredParts("Part C"));
+        // Get list of products in Main Screen
+        productsTableView.setItems(Inventory.getAllProducts());
+        productsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        productsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        productsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
+        productsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+
     }
 
     // Parts search button action
@@ -120,7 +127,6 @@ public class MainScreenController implements Initializable {
             partsTableView.setItems(null);
             partsTableView.setItems(Inventory.getAllParts());
         } else {
-
             partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
         }
 
@@ -137,7 +143,7 @@ public class MainScreenController implements Initializable {
 
     // Parts add button action
     @FXML
-    private void partsAddButtonAction() throws IOException {
+    private void partsAddButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/PartScreen.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) partsAddButton.getScene().getWindow();
@@ -147,17 +153,56 @@ public class MainScreenController implements Initializable {
 
     // Parts modify button action
     @FXML
-    private void partsModifyButtonAction() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/PartScreen.fxml"));
+    private void partsModifyButtonAction(ActionEvent event) throws IOException {
+        // TODO-- clean this code up and standardize it across the other buttons
+        Stage stage;
+        Parent root;
+        stage = (Stage) partsModifyButton.getScene().getWindow();
+        //load up OTHER FXML document
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/View_Controller/PartScreen.fxml"));
+        root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) partsModifyButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
+        PartScreenController controller = loader.getController();
+        Part p = partsTableView.getSelectionModel().getSelectedItem();
+        controller.setModifyPart(p);
+
+//        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/PartScreen.fxml"));
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage) partsModifyButton.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
+    }
+
+    // Part Delete Button Action
+    @FXML
+    private void partDeleteButtonAction() {
+        Part p = partsTableView.getSelectionModel().getSelectedItem();
+        partsTableView.getItems().remove(p);
+    }
+
+    // Products Search Button Action
+    @FXML
+    void productsSearchButtonAction(ActionEvent event) {
+        //TODO  see partsSearchButtonAction
+
+        String searchTerm = productsSearchTextField.getText();
+
+        if (searchTerm.equals("")) {
+            // Resets table
+            productsTableView.setItems(null);
+            productsTableView.setItems(Inventory.getAllProducts());
+        } else {
+            productsTableView.setItems(Inventory.getFilteredProducts(searchTerm));
+        }
     }
 
     // Product add button action
     @FXML
-    private void productsAddButtonAction() throws IOException {
+    private void productsAddButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/ProductScreen.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) productsAddButton.getScene().getWindow();
@@ -167,12 +212,20 @@ public class MainScreenController implements Initializable {
 
     // Product modify button action
     @FXML
-    private void productsModifyButtonAction() throws IOException {
+    private void productsModifyButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/ProductScreen.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) productsModifyButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    // Product delete button action
+    @FXML
+    private void productsDeleteButtonAction() {
+        Product p = productsTableView.getSelectionModel().getSelectedItem();
+        productsTableView.getItems().remove(p);
+
     }
 
     // Exit button action

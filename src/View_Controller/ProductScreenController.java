@@ -6,9 +6,11 @@
 package View_Controller;
 
 import Model.Inventory;
+import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -121,9 +123,32 @@ public class ProductScreenController implements Initializable {
         partsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
         partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+
+        // Get list of products in Main Screen
+        productsTableView.setItems(Inventory.getAllProducts());
+        productsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        productsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        productsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
+        productsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+
     }
 
-    // Part save button action
+    @FXML
+    void partsSearchButtonAction(ActionEvent event) {
+        //TODO see MS parts to do some handling
+
+        String searchTerm = partsSearchTextField.getText();
+
+        if (searchTerm.equals("")) {
+            // Resets table
+            partsTableView.setItems(null);
+            partsTableView.setItems(Inventory.getAllParts());
+        } else {
+            partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
+        }
+    }
+
+    // Product save button action
     @FXML
     private void productSaveButtonAction() throws IOException {
         // Do Some stuff
@@ -146,6 +171,14 @@ public class ProductScreenController implements Initializable {
         Stage stage = (Stage) productCancelButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    // Product Delete Button Action
+    @FXML
+    private void productsDeleteButtonAction() {
+        Product p = (Product) productsTableView.getSelectionModel().getSelectedItem();
+        productsTableView.getItems().remove(p);
+
     }
 
 }

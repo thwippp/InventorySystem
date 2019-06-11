@@ -41,7 +41,7 @@
                                             <buttons>
                                                 <Button fx:id="partsAddButton" mnemonicParsing="false" onAction="#partsAddButtonAction" text="Add" />
                                                 <Button fx:id="partsModifyButton" mnemonicParsing="false" onAction="#partsModifyButtonAction" text="Modify" />
-                                                <Button fx:id="partsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
+                                                <Button fx:id="partsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#partDeleteButtonAction" text="Delete" />
                                             </buttons>
                                         </ButtonBar>
                                     </children>
@@ -69,12 +69,12 @@
                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                     <children>
                                         <TextField fx:id="productsSearchTextField" promptText="Search Products" />
-                                        <Button fx:id="productsSearchButton" mnemonicParsing="false" text="Search" />
+                                        <Button fx:id="productsSearchButton" mnemonicParsing="false" onAction="#productsSearchButtonAction" text="Search" />
                                         <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                             <buttons>
                                                 <Button fx:id="productsAddButton" mnemonicParsing="false" onAction="#productsAddButtonAction" text="Add" />
                                                 <Button fx:id="productsModifyButton" mnemonicParsing="false" onAction="#productsModifyButtonAction" text="Modify" />
-                                                <Button fx:id="productsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Delete" />
+                                                <Button fx:id="productsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#productsDeleteButtonAction" text="Delete" />
                                             </buttons>
                                         </ButtonBar>
                                     </children>
