@@ -5,6 +5,7 @@
  */
 package Model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,7 +15,8 @@ import javafx.collections.ObservableList;
 public class Product {
 
     // Instance Variables
-//    private ObservableList associatedParts;
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    
     private int productId;
     private String productName;
     private double productPrice;
@@ -31,19 +33,21 @@ public class Product {
         this.productMax = productMax;
     }
 
-//    // Associated Parts
-//    public void addAssociatedPart(Part associatedPart){
-//        // Do something
-//    }
-//    
-//    public void deleteAssociatedPart(Part associatedPart){
-//        // Do something
-//    }
-//    
-//    // Duplicate from getter method?
-//    public ObservableList getAllAssociatedParts(){
-//        return this.associatedParts;
-//    }
+    // Associated Parts
+    public void addAssociatedPart(Part associatedPart){
+       this.associatedParts.add(associatedPart);
+    }
+    
+    public void deleteAssociatedPart(Part associatedPart){
+        this.associatedParts.remove(associatedPart);
+    }
+    
+    
+    public ObservableList<Part> getAllAssociatedParts(){
+        return this.associatedParts;
+    }
+    
+    
     // Setter Methods
     public void setProductId(int productId) {
         this.productId = productId;

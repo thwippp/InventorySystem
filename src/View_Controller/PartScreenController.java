@@ -82,9 +82,6 @@ public class PartScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-// Something like this...
-//        partsTableView.setItems(InHousePart.add(selectedPart));
 
         final ToggleGroup partRadioButtonToggleGroup = new ToggleGroup();
         partInHouseRadioButton.setToggleGroup(partRadioButtonToggleGroup);

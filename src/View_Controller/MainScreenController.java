@@ -213,11 +213,22 @@ public class MainScreenController implements Initializable {
     // Product modify button action
     @FXML
     private void productsModifyButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/ProductScreen.fxml"));
+        // TODO-- clean this code up and standardize it across the other buttons
+        Stage stage;
+        Parent root;
+        stage = (Stage) productsModifyButton.getScene().getWindow();
+        //load up OTHER FXML document
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/View_Controller/ProductScreen.fxml"));
+        root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) productsModifyButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
+        ProductScreenController controller = loader.getController();
+        Product p = productsTableView.getSelectionModel().getSelectedItem();
+        controller.setModifyProduct(p);
+        
     }
 
     // Product delete button action

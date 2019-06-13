@@ -6,6 +6,7 @@
 package View_Controller;
 
 import Model.Inventory;
+import Model.Part;
 import Model.Product;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -37,10 +39,6 @@ public class ProductScreenController implements Initializable {
     @FXML
     private Label addProductLabel;
     @FXML
-    private RadioButton productInHouseRadioButton;
-    @FXML
-    private RadioButton productOutsourcedRadioButton;
-    @FXML
     private Label productIdLabel;
     @FXML
     private Label productNameLabel;
@@ -52,8 +50,6 @@ public class ProductScreenController implements Initializable {
     private Label productMinLabel;
     @FXML
     private Label productMaxLabel;
-    @FXML
-    private Label productCompanyNameLabel;
     @FXML
     private Button productSaveButton;
     @FXML
@@ -72,8 +68,6 @@ public class ProductScreenController implements Initializable {
     private TextField productMinTextField;
     @FXML
     private TextField productMaxTextField;
-    @FXML
-    private TextField productCompanyNameTextField;
 
     // Instance Variables for Parts
     @FXML
@@ -95,21 +89,23 @@ public class ProductScreenController implements Initializable {
     @FXML
     private Button partsAddButton;
 
-    // Instance Variables for Products
+    // Instance Variables for Associated Parts
     @FXML
-    private Label productsLabel;
+    private Label associatedPartsLabel;
     @FXML
-    private TableView productsTableView;
+    private TableView associatedPartsTableView;
     @FXML
-    private TableColumn productsIdTableColumn;
+    private TableColumn associatedPartsIdTableColumn;
     @FXML
-    private TableColumn productsNameTableColumn;
+    private TableColumn associatedPartsNameTableColumn;
     @FXML
-    private TableColumn productsInventoryTableColumn;
+    private TableColumn associatedPartsInventoryTableColumn;
     @FXML
-    private TableColumn productsPriceTableColumn;
+    private TableColumn associatedPartsPriceTableColumn;
     @FXML
-    private Button productsDeleteButton;
+    private Button associatedPartsDeleteButton;
+
+    private static Product selectedProduct;  // STATIC
 
     /**
      * Initializes the controller class.
@@ -124,12 +120,13 @@ public class ProductScreenController implements Initializable {
         partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
 
-        // Get list of products in Main Screen
-        productsTableView.setItems(Inventory.getAllProducts());
-        productsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
-        productsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        productsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
-        productsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+        // TODO-- when/where do I initialize the associatedPartsTableView?
+        // Gets current list of associated parts in ProductScreen
+//        associatedPartsTableView.setItems(selectedProduct.getAllAssociatedParts());
+//        associatedPartsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
+//        associatedPartsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
+//        associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
+//        associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
 
     }
 
@@ -148,17 +145,38 @@ public class ProductScreenController implements Initializable {
         }
     }
 
+    @FXML
+    private void partsAddButtonAction() {
+        // TODO-- do I really want to remove it from the partsTableView?
+        // Should it still be selectable for other Products?
+        Part associatedPart = (Part) partsTableView.getSelectionModel().getSelectedItem();
+        // partsTableView.getItems().remove(associatedPart);  // A= keep, B= delete this line
+
+        associatedPartsTableView.getItems().add(associatedPart);
+        
+//       Product p0 = (Product) Inventory.getAllProducts().get(0);  // Make method to get product with id matching id field
+//       p0.addAssociatedPart(associatedPart);
+        
+    }
+
     // Product save button action
     @FXML
     private void productSaveButtonAction() throws IOException {
-        // Do Some stuff
-        // Get fields (can do some checking here
-        // call new InHouse or Outsourced Part Constructor
 
+        int id = Integer.parseInt(productIdTextField.getText());
+        String name = productNameTextField.getText();
+        double price = Double.parseDouble(productPriceTextField.getText());
+        int stock = Integer.parseInt(productInventoryTextField.getText());
+        int min = Integer.parseInt(productMinTextField.getText());
+        int max = Integer.parseInt(productMaxTextField.getText());
+        
+        Product savedProduct = new Product(id, name, price, stock, min, max);
+        Inventory.addProduct(savedProduct);
+        
         // Go back to main screen
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
         Scene scene = new Scene(root);
-        Stage stage = (Stage) productCancelButton.getScene().getWindow();
+        Stage stage = (Stage) productSaveButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
@@ -175,10 +193,29 @@ public class ProductScreenController implements Initializable {
 
     // Product Delete Button Action
     @FXML
-    private void productsDeleteButtonAction() {
-        Product p = (Product) productsTableView.getSelectionModel().getSelectedItem();
-        productsTableView.getItems().remove(p);
+    private void associatedPartsDeleteButtonAction() {
+        Part dissociatedPart = (Part) associatedPartsTableView.getSelectionModel().getSelectedItem();
+        associatedPartsTableView.getItems().remove(dissociatedPart);
 
+//        partsTableView.getItems().add(dissociatedPart);  // don't add it back if it never leaves
     }
 
+    public void setModifyProduct(Product product) {
+        selectedProduct = product;
+
+        productIdTextField.setText(String.valueOf(selectedProduct.getProductId()));
+        productNameTextField.setText(selectedProduct.getProductName());
+        productPriceTextField.setText(String.valueOf(selectedProduct.getProductPrice()));
+        productInventoryTextField.setText(String.valueOf(selectedProduct.getProductStock()));
+        productMinTextField.setText(String.valueOf(selectedProduct.getProductMin()));
+        productMaxTextField.setText(String.valueOf(selectedProduct.getProductMax()));
+
+        associatedPartsTableView.setItems(selectedProduct.getAllAssociatedParts());
+        associatedPartsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
+        associatedPartsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
+        associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
+        associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+
+        
+    }
 }

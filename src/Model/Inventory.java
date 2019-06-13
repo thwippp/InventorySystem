@@ -24,6 +24,8 @@ public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
     private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
 
+//    private static ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    
 // Setters
     public static void addPart(Part part) {
         // do stuff
@@ -42,6 +44,10 @@ public class Inventory {
     public static void addFilteredProduct(Product product) {
         filteredProducts.add(product);
     }
+    
+//    public static void addAssociatedPart(Part part){
+//        associatedParts.add(part);
+//    }
 
     public static void updatePart(int index, Part part) {
         // do stuff
@@ -121,7 +127,7 @@ public class Inventory {
         return allProducts;
     }
 
-    public static ObservableList<Product> getFilteredProducts(String productName) {
+    public static ObservableList<Product> getFilteredProducts(String productName){
         clearFilteredProducts();
 
         for (Product product : Inventory.getAllProducts()) {
@@ -132,5 +138,9 @@ public class Inventory {
         }
         return filteredProducts;
     }
+    
+//    public static ObservableList<Part> getAllAssociatedParts(){
+//        return associatedParts;
+//    }
 
 }
