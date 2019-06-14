@@ -27,12 +27,11 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public class PartScreenController implements Initializable {
     // Instance Variables
 
-    // TODO make radiobuttons in a group
     // Labels and Buttons
     @FXML
     private Label addPartLabel;
@@ -99,15 +98,7 @@ public class PartScreenController implements Initializable {
         partMaxTextField.setText(String.valueOf(selectedPart.getPartMax()));
 
         // Checks for the type of part and sets the Machine Id or
-        // Company Name based on the subclass
-        // TODO-- safe casting??? is this way necessary?  Or can I use what I have?
-//        Object obj; 
-//        if (obj instanceof Integer){
-//            Integer objAsInt = (Integer) obj
-//                    // do somthing with 'obAsInt'
-//        }
-// WHATS THE DIFFERENCE?
-//        if(selectedPart instanceof Model.InHousePart){
+        //   Company Name based on the subclass
         if (Model.InHousePart.class.isInstance(selectedPart)) {
             partInHouseRadioButton.setSelected(true);
             partMICNLabel.setText("Machine Id");
@@ -138,65 +129,59 @@ public class PartScreenController implements Initializable {
     }
 
     @FXML
-    private void partSaveButtonAction(Part part) throws IOException {
-
-        int id = Integer.parseInt(partIdTextField.getText());
-        String name = partNameTextField.getText();
-        double price = Double.parseDouble(partPriceTextField.getText());
-        int stock = Integer.parseInt(partInventoryTextField.getText());
-        int min = Integer.parseInt(partMinTextField.getText());
-        int max = Integer.parseInt(partMaxTextField.getText());
-//        int mIDCN = Integer.parseInt(partMICNTextField.getText());
-
-        if (partInHouseRadioButton.isSelected()) {
-            int mIDCN = Integer.parseInt(partMICNTextField.getText());
-            part.setPartId(id);
-            part.setPartName(name);
-            part.setPartPrice(price);
-            part.setPartStock(stock);
-            part.setPartMin(min);
-            part.setPartMax(max);
-            ((InHousePart) part).setMachineId(mIDCN);
-            Inventory.updatePart(id, part);
-
-//            InHousePart p = new InHousePart(id, name, price, stock, min, max, mIDCN);
-//            Inventory.addPart(p);
-        } else {
-            String mIDCN = partMICNTextField.getText();
-            OutsourcedPart p = new OutsourcedPart(id, name, price, stock, min, max, mIDCN);
-            Inventory.addPart(p);
-        }
-
-        // Go back to main screen
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) partSaveButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    // Part save button action
-    @FXML
     private void partSaveButtonAction() throws IOException {
-        // Do Some stuff
-        // TODO-- Get fields (can do some checking here
-        // TODO-- Update, don't add a new one...
+
         int id = Integer.parseInt(partIdTextField.getText());
         String name = partNameTextField.getText();
         double price = Double.parseDouble(partPriceTextField.getText());
         int stock = Integer.parseInt(partInventoryTextField.getText());
         int min = Integer.parseInt(partMinTextField.getText());
         int max = Integer.parseInt(partMaxTextField.getText());
-//        int mIDCN = Integer.parseInt(partMICNTextField.getText());
 
         if (partInHouseRadioButton.isSelected()) {
             int mIDCN = Integer.parseInt(partMICNTextField.getText());
-            InHousePart p = new InHousePart(id, name, price, stock, min, max, mIDCN);
-            Inventory.addPart(p);
-        } else {
+
+            if (Inventory.partExists(id)) {
+                InHousePart existingPart = (InHousePart) Inventory.getPartById(id);
+
+                existingPart.setPartId(id);
+                existingPart.setPartName(name);
+                existingPart.setPartPrice(price);
+                existingPart.setPartStock(stock);
+                existingPart.setPartMin(min);
+                existingPart.setPartMax(max);
+                ((InHousePart) existingPart).setMachineId(mIDCN);
+
+                Inventory.updatePart(id, existingPart);
+            } // end if part exists inhouse
+            else {
+                InHousePart p = new InHousePart(id, name, price, stock, min, max, mIDCN);
+                Inventory.addPart(p);
+            } // end else part exists inhouse
+        } // end if inhousepart
+        else if (partOutsourcedRadioButton.isSelected()) {
             String mIDCN = partMICNTextField.getText();
-            OutsourcedPart p = new OutsourcedPart(id, name, price, stock, min, max, mIDCN);
-            Inventory.addPart(p);
+
+            if (Inventory.partExists(id)) {
+                OutsourcedPart existingPart = (OutsourcedPart) Inventory.getPartById(id);
+
+                existingPart.setPartId(id);
+                existingPart.setPartName(name);
+                existingPart.setPartPrice(price);
+                existingPart.setPartStock(stock);
+                existingPart.setPartMin(min);
+                existingPart.setPartMax(max);
+                ((OutsourcedPart) existingPart).setCompanyName(mIDCN);
+
+                Inventory.updatePart(id, existingPart);
+            } // end if part exists outsoureced 
+            else {
+                OutsourcedPart p = new OutsourcedPart(id, name, price, stock, min, max, mIDCN);
+                Inventory.addPart(p);
+            }// end else outsourced
+        } // end else if outsourced
+        else {
+            // do nothing
         }
 
         // Go back to main screen
@@ -205,7 +190,7 @@ public class PartScreenController implements Initializable {
         Stage stage = (Stage) partSaveButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-    }
+    } // end save button action
 
     // Part cancel button action
     @FXML

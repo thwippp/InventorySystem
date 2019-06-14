@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View_Controller;
 
 import Model.Inventory;
@@ -19,18 +14,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public class ProductScreenController implements Initializable {
     // Instance Variables
@@ -73,15 +66,15 @@ public class ProductScreenController implements Initializable {
     @FXML
     private Label partsLabel;
     @FXML
-    private TableView partsTableView;
+    private TableView<Part> partsTableView;
     @FXML
-    private TableColumn partsIdTableColumn;
+    private TableColumn<Part, Integer> partsIdTableColumn;
     @FXML
-    private TableColumn partsNameTableColumn;
+    private TableColumn<Part, String> partsNameTableColumn;
     @FXML
-    private TableColumn partsInventoryTableColumn;
+    private TableColumn<Part, Integer> partsInventoryTableColumn;
     @FXML
-    private TableColumn partsPriceTableColumn;
+    private TableColumn<Part, Double> partsPriceTableColumn;
     @FXML
     private Button partsSearchButton;
     @FXML
@@ -93,19 +86,19 @@ public class ProductScreenController implements Initializable {
     @FXML
     private Label associatedPartsLabel;
     @FXML
-    private TableView associatedPartsTableView;
+    private TableView<Part> associatedPartsTableView;
     @FXML
-    private TableColumn associatedPartsIdTableColumn;
+    private TableColumn<Part, Integer> associatedPartsIdTableColumn;
     @FXML
-    private TableColumn associatedPartsNameTableColumn;
+    private TableColumn<Part, String> associatedPartsNameTableColumn;
     @FXML
-    private TableColumn associatedPartsInventoryTableColumn;
+    private TableColumn<Part, Integer> associatedPartsInventoryTableColumn;
     @FXML
-    private TableColumn associatedPartsPriceTableColumn;
+    private TableColumn<Part, Double> associatedPartsPriceTableColumn;
     @FXML
     private Button associatedPartsDeleteButton;
 
-    private static Product selectedProduct;  // STATIC
+    private static Product selectedProduct;
 
     /**
      * Initializes the controller class.
@@ -119,15 +112,6 @@ public class ProductScreenController implements Initializable {
         partsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
         partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
-
-        // TODO-- when/where do I initialize the associatedPartsTableView?
-        // Gets current list of associated parts in ProductScreen
-//        associatedPartsTableView.setItems(selectedProduct.getAllAssociatedParts());
-//        associatedPartsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
-//        associatedPartsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
-//        associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
-//        associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
-
     }
 
     @FXML
@@ -147,32 +131,36 @@ public class ProductScreenController implements Initializable {
 
     @FXML
     private void partsAddButtonAction() {
-        // TODO-- do I really want to remove it from the partsTableView?
-        // Should it still be selectable for other Products?
         Part associatedPart = (Part) partsTableView.getSelectionModel().getSelectedItem();
-        // partsTableView.getItems().remove(associatedPart);  // A= keep, B= delete this line
 
+        // TODO-- if I hit cancel, it shouldn't add it to the Product
+        // Should do some sort of temporary tableview and then add the temp tableview
+        // to the associatedPartsTableView on productsSaveButtonAction
         associatedPartsTableView.getItems().add(associatedPart);
-        
-//       Product p0 = (Product) Inventory.getAllProducts().get(0);  // Make method to get product with id matching id field
-//       p0.addAssociatedPart(associatedPart);
-        
+
     }
 
     // Product save button action
     @FXML
     private void productSaveButtonAction() throws IOException {
+        // if product exists, update it
+        // if no product exists, add new product
 
         int id = Integer.parseInt(productIdTextField.getText());
-        String name = productNameTextField.getText();
-        double price = Double.parseDouble(productPriceTextField.getText());
-        int stock = Integer.parseInt(productInventoryTextField.getText());
-        int min = Integer.parseInt(productMinTextField.getText());
-        int max = Integer.parseInt(productMaxTextField.getText());
-        
-        Product savedProduct = new Product(id, name, price, stock, min, max);
-        Inventory.addProduct(savedProduct);
-        
+        if (Inventory.productExists(id)) {
+            Product existingProduct = Inventory.getProductById(id);
+            Inventory.updateProduct(id, existingProduct);
+        } else {
+            String name = productNameTextField.getText();
+            double price = Double.parseDouble(productPriceTextField.getText());
+            int stock = Integer.parseInt(productInventoryTextField.getText());
+            int min = Integer.parseInt(productMinTextField.getText());
+            int max = Integer.parseInt(productMaxTextField.getText());
+
+            Product savedProduct = new Product(id, name, price, stock, min, max);
+            Inventory.addProduct(savedProduct);
+        }
+
         // Go back to main screen
         Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
         Scene scene = new Scene(root);
@@ -196,8 +184,6 @@ public class ProductScreenController implements Initializable {
     private void associatedPartsDeleteButtonAction() {
         Part dissociatedPart = (Part) associatedPartsTableView.getSelectionModel().getSelectedItem();
         associatedPartsTableView.getItems().remove(dissociatedPart);
-
-//        partsTableView.getItems().add(dissociatedPart);  // don't add it back if it never leaves
     }
 
     public void setModifyProduct(Product product) {
@@ -215,7 +201,5 @@ public class ProductScreenController implements Initializable {
         associatedPartsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
         associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
-
-        
     }
 }

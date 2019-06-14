@@ -1,24 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 /**
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public abstract class Part {
 
     // Instance Variables
-    // protected so that subclasses can use these variables
+    // Protected so that subclasses can use these variables
     protected int partId;
     protected String partName;
     protected double partPrice;
     protected int partStock;
     protected int partMin;
     protected int partMax;
+    // TODO-- Autogenerate partId?
 
     // Constructor
     public Part(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {

@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public class InventorySystemBrianSchaffeld extends Application {
 

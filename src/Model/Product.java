@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 import javafx.collections.FXCollections;
@@ -10,13 +5,13 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public class Product {
 
     // Instance Variables
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
-    
+
     private int productId;
     private String productName;
     private double productPrice;
@@ -33,21 +28,6 @@ public class Product {
         this.productMax = productMax;
     }
 
-    // Associated Parts
-    public void addAssociatedPart(Part associatedPart){
-       this.associatedParts.add(associatedPart);
-    }
-    
-    public void deleteAssociatedPart(Part associatedPart){
-        this.associatedParts.remove(associatedPart);
-    }
-    
-    
-    public ObservableList<Part> getAllAssociatedParts(){
-        return this.associatedParts;
-    }
-    
-    
     // Setter Methods
     public void setProductId(int productId) {
         this.productId = productId;
@@ -74,10 +54,6 @@ public class Product {
     }
 
     // Getter Methods
-//    public ObservableList getAssociatedParts(){
-//        // Do something here, too.
-//        return this.associatedParts; // this is not right lol
-//    }
     public int getProductId() {
         return this.productId;
     }
@@ -100,6 +76,19 @@ public class Product {
 
     public int getProductMax() {
         return this.productMax;
+    }
+
+    // Associated Parts
+    public void addAssociatedPart(Part associatedPart) {
+        this.associatedParts.add(associatedPart);
+    }
+
+    public void deleteAssociatedPart(Part associatedPart) {
+        this.associatedParts.remove(associatedPart);
+    }
+
+    public ObservableList<Part> getAllAssociatedParts() {
+        return this.associatedParts;
     }
 
 }

@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 /**
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public class InHousePart extends Part {
 
@@ -15,7 +10,7 @@ public class InHousePart extends Part {
 
     public InHousePart(int partId, String partName, double partPrice, int partStock, int partMin, int partMax, int machineId) {
         super(partId, partName, partPrice, partStock, partMin, partMax);
-        this.machineId = machineId;
+        setMachineId(machineId);
     }
 
     // Setters

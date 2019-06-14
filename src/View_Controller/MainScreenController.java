@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View_Controller;
 
 import Model.InHousePart;
@@ -30,7 +25,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author bscha
+ * @author Brian Schaffeld
  */
 public class MainScreenController implements Initializable {
 
@@ -93,7 +88,6 @@ public class MainScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
 
         // Get list of parts in Main Screen
         partsTableView.setItems(Inventory.getAllParts());
@@ -129,16 +123,6 @@ public class MainScreenController implements Initializable {
         } else {
             partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
         }
-
-//        if(foundParts.isEmpty()) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.initModality(Modality.APPLICATION_MODAL);
-//            alert.setTitle("No Part match found");
-//            alert.setHeaderText("No Part Names found matching " + term); 
-//            alert.showAndWait();
-//        } else {
-//            partTable.setItems(foundParts);
-//        }
     }
 
     // Parts add button action
@@ -169,12 +153,6 @@ public class MainScreenController implements Initializable {
         PartScreenController controller = loader.getController();
         Part p = partsTableView.getSelectionModel().getSelectedItem();
         controller.setModifyPart(p);
-
-//        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/PartScreen.fxml"));
-//        Scene scene = new Scene(root);
-//        Stage stage = (Stage) partsModifyButton.getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.show();
     }
 
     // Part Delete Button Action
@@ -187,7 +165,11 @@ public class MainScreenController implements Initializable {
     // Products Search Button Action
     @FXML
     void productsSearchButtonAction(ActionEvent event) {
-        //TODO  see partsSearchButtonAction
+        //TODO  
+        // Get search term (dynamically find field based on input type?)-- right now part name
+        // Get list of current parts
+        // Find parts that match
+        // Return parts that match --> add them to the tableview
 
         String searchTerm = productsSearchTextField.getText();
 
@@ -228,7 +210,7 @@ public class MainScreenController implements Initializable {
         ProductScreenController controller = loader.getController();
         Product p = productsTableView.getSelectionModel().getSelectedItem();
         controller.setModifyProduct(p);
-        
+
     }
 
     // Product delete button action
