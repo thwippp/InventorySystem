@@ -14,11 +14,13 @@ public abstract class Part {
     protected int partStock;
     protected int partMin;
     protected int partMax;
-    // TODO-- Autogenerate partId?
 
     // Constructor
-    public Part(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
-        this.partId = partId;
+    public Part(String partName, double partPrice, int partStock, int partMin, int partMax) {
+//        this.partId = partId;
+        setPartId(Inventory.getPartIdAutoGen() + 1);
+        Inventory.setPartIdAutoGen(partId);
+        
         this.partName = partName;
         this.partPrice = partPrice;
         this.partStock = partStock;

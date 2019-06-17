@@ -105,6 +105,9 @@ public class ProductScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Disables text field because it is automatically generated
+        productIdTextField.setDisable(true);
+
         // TODO
         // Gets current list of parts in ProductScreen
         partsTableView.setItems(Inventory.getAllParts());

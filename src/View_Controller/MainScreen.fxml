@@ -25,7 +25,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <TableView fx:id="partsTableView">
+                                <TableView fx:id="partsTableView" onMousePressed="#userClickedOnPartsTableView">
                                     <columns>
                                         <TableColumn fx:id="partsIdTableColumn" prefWidth="135.0" text="Part ID" />
                                         <TableColumn fx:id="partsNameTableColumn" prefWidth="135.0" text="Part Name" />
@@ -58,7 +58,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <TableView fx:id="productsTableView">
+                                <TableView fx:id="productsTableView" onMousePressed="#userClickedOnProductsTableView">
                                     <columns>
                                         <TableColumn fx:id="productsIdTableColumn" prefWidth="135.0" text="Product ID" />
                                         <TableColumn fx:id="productsNameTableColumn" prefWidth="135.0" text="Product Name" />

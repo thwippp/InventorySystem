@@ -82,6 +82,9 @@ public class PartScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        // Disables text field because it is automatically generated
+        partIdTextField.setDisable(true);
+        
         final ToggleGroup partRadioButtonToggleGroup = new ToggleGroup();
         partInHouseRadioButton.setToggleGroup(partRadioButtonToggleGroup);
         partOutsourcedRadioButton.setToggleGroup(partRadioButtonToggleGroup);
@@ -155,7 +158,7 @@ public class PartScreenController implements Initializable {
                 Inventory.updatePart(id, existingPart);
             } // end if part exists inhouse
             else {
-                InHousePart p = new InHousePart(id, name, price, stock, min, max, mIDCN);
+                InHousePart p = new InHousePart(name, price, stock, min, max, mIDCN);
                 Inventory.addPart(p);
             } // end else part exists inhouse
         } // end if inhousepart
@@ -176,7 +179,7 @@ public class PartScreenController implements Initializable {
                 Inventory.updatePart(id, existingPart);
             } // end if part exists outsoureced 
             else {
-                OutsourcedPart p = new OutsourcedPart(id, name, price, stock, min, max, mIDCN);
+                OutsourcedPart p = new OutsourcedPart(name, price, stock, min, max, mIDCN);
                 Inventory.addPart(p);
             }// end else outsourced
         } // end else if outsourced

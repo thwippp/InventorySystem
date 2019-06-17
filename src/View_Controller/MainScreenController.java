@@ -80,7 +80,28 @@ public class MainScreenController implements Initializable {
     // Instance variables for Main Screen
     @FXML
     private Button exitButton;
+    
+    private static boolean partSelected;
+    private static boolean productSelected;
 
+    public static boolean isPartSelected() {
+        return partSelected;
+    }
+
+    public static void setPartSelected(boolean partSelected) {
+        MainScreenController.partSelected = partSelected;
+    }
+
+    public static boolean isProductSelected() {
+        return productSelected;
+    }
+
+    public static void setProductSelected(boolean productSelected) {
+        MainScreenController.productSelected = productSelected;
+    }
+
+    
+    
     /**
      *
      *
@@ -89,6 +110,12 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        setPartSelected(false);
+        partsModifyButton.setDisable(true);
+        
+        setProductSelected(false);
+        productsModifyButton.setDisable(true);
+        
         // Get list of parts in Main Screen
         partsTableView.setItems(Inventory.getAllParts());
         partsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
@@ -102,7 +129,7 @@ public class MainScreenController implements Initializable {
         productsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
         productsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
-
+        
     }
 
     // Parts search button action
@@ -123,6 +150,11 @@ public class MainScreenController implements Initializable {
         } else {
             partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
         }
+    }
+    
+    @FXML
+    private void userClickedOnPartsTableView(){
+        partsModifyButton.setDisable(false);
     }
 
     // Parts add button action
@@ -192,6 +224,11 @@ public class MainScreenController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    private void userClickedOnProductsTableView(){
+        productsModifyButton.setDisable(false);
+    }
+    
     // Product modify button action
     @FXML
     private void productsModifyButtonAction(ActionEvent event) throws IOException {

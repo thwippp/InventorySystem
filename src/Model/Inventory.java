@@ -11,11 +11,21 @@ public class Inventory {
 
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
-
+    private static int partIdAutoGen;
+    
+    
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
     private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
-
+    private static int productIdAutoGen;
+    
     // Parts ///////////////////////////////////////////////////////////////////
+    public static int getPartIdAutoGen() {
+        return partIdAutoGen;
+    }
+
+    public static void setPartIdAutoGen(int partIdAutoGen) {
+        Inventory.partIdAutoGen = partIdAutoGen;
+    }
     public static ObservableList<Part> getAllParts() {
         return allParts;
     }
@@ -81,6 +91,13 @@ public class Inventory {
     }
 
     // Products ///////////////////////////////////////////////////////////////
+     public static int getProductIdAutoGen() {
+        return productIdAutoGen;
+    }
+
+    public static void setProductIdAutoGen(int productIdAutoGen) {
+        Inventory.productIdAutoGen = productIdAutoGen;
+    }
     public static void addProduct(Product product) {
         allProducts.add(product);
     }

@@ -39,10 +39,10 @@ public class InventorySystemBrianSchaffeld extends Application {
     public static void main(String[] args) {
 
         // Create data here  partId, partName, partPrice, partStock, partMin, partMax
-        InHousePart a = new InHousePart(1, "Part A", 9.99, 10, 1, 10, 5);
-        InHousePart b = new InHousePart(2, "Part B", 19.99, 20, 11, 101, 9);
-        OutsourcedPart c = new OutsourcedPart(3, "Part C", 29.99, 30, 21, 120, "Company C");
-        OutsourcedPart d = new OutsourcedPart(4, "Part D", 39.99, 40, 33, 150, "Company D");
+        InHousePart a = new InHousePart("Part A", 9.99, 10, 1, 10, 5);
+        InHousePart b = new InHousePart("Part B", 19.99, 20, 11, 101, 9);
+        OutsourcedPart c = new OutsourcedPart("Part C", 29.99, 30, 21, 120, "Company C");
+        OutsourcedPart d = new OutsourcedPart("Part D", 39.99, 40, 33, 150, "Company D");
 
         // Adds parts to the ObservableLists/ArrayLists
         Inventory.addPart(a);
