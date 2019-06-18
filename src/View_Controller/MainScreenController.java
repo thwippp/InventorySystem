@@ -80,7 +80,7 @@ public class MainScreenController implements Initializable {
     // Instance variables for Main Screen
     @FXML
     private Button exitButton;
-    
+
     private static boolean partSelected;
     private static boolean productSelected;
 
@@ -100,8 +100,6 @@ public class MainScreenController implements Initializable {
         MainScreenController.productSelected = productSelected;
     }
 
-    
-    
     /**
      *
      *
@@ -112,10 +110,10 @@ public class MainScreenController implements Initializable {
 
         setPartSelected(false);
         partsModifyButton.setDisable(true);
-        
+
         setProductSelected(false);
         productsModifyButton.setDisable(true);
-        
+
         // Get list of parts in Main Screen
         partsTableView.setItems(Inventory.getAllParts());
         partsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
@@ -129,7 +127,7 @@ public class MainScreenController implements Initializable {
         productsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
         productsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
-        
+
     }
 
     // Parts search button action
@@ -151,20 +149,29 @@ public class MainScreenController implements Initializable {
             partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
         }
     }
-    
+
     @FXML
-    private void userClickedOnPartsTableView(){
+    private void userClickedOnPartsTableView() {
         partsModifyButton.setDisable(false);
     }
 
     // Parts add button action
     @FXML
     private void partsAddButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/PartScreen.fxml"));
+        Stage stage;
+        Parent root;
+        stage = (Stage) partsModifyButton.getScene().getWindow();
+        //load up OTHER FXML document
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/View_Controller/PartScreen.fxml"));
+        root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) partsAddButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
+        PartScreenController controller = loader.getController();
+//        Part p = partsTableView.getSelectionModel().getSelectedItem();
+        controller.setModifyPart(null);  // throws weird errors but still works
     }
 
     // Parts modify button action
@@ -217,18 +224,26 @@ public class MainScreenController implements Initializable {
     // Product add button action
     @FXML
     private void productsAddButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/ProductScreen.fxml"));
+        Stage stage;
+        Parent root;
+        stage = (Stage) productsModifyButton.getScene().getWindow();
+        //load up OTHER FXML document
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/View_Controller/ProductScreen.fxml"));
+        root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) productsAddButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
+        ProductScreenController controller = loader.getController();
+        productsTableView.getSelectionModel().clearSelection();
     }
 
     @FXML
-    private void userClickedOnProductsTableView(){
+    private void userClickedOnProductsTableView() {
         productsModifyButton.setDisable(false);
     }
-    
+
     // Product modify button action
     @FXML
     private void productsModifyButtonAction(ActionEvent event) throws IOException {
@@ -247,7 +262,6 @@ public class MainScreenController implements Initializable {
         ProductScreenController controller = loader.getController();
         Product p = productsTableView.getSelectionModel().getSelectedItem();
         controller.setModifyProduct(p);
-
     }
 
     // Product delete button action

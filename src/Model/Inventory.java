@@ -11,13 +11,12 @@ public class Inventory {
 
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
-    private static int partIdAutoGen;
-    
-    
+    private static int partIdAutoGen = 0;
+
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
     private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
-    private static int productIdAutoGen;
-    
+    private static int productIdAutoGen = 0;
+
     // Parts ///////////////////////////////////////////////////////////////////
     public static int getPartIdAutoGen() {
         return partIdAutoGen;
@@ -26,6 +25,7 @@ public class Inventory {
     public static void setPartIdAutoGen(int partIdAutoGen) {
         Inventory.partIdAutoGen = partIdAutoGen;
     }
+
     public static ObservableList<Part> getAllParts() {
         return allParts;
     }
@@ -41,6 +41,7 @@ public class Inventory {
     }
 
     public static void addPart(Part part) {
+        
         allParts.add(part);
     }
 
@@ -53,14 +54,36 @@ public class Inventory {
     }
 
     public static boolean partExists(int id) {
+        boolean exists = false;
         for (Part p : Inventory.getAllParts()) {
             if (p.getPartId() == id) {
-                return true;
+                exists = true;
             }
         }
-        return false;
+        return exists;
     }
 
+//    public static int getPartIndex(int id) {
+//        int index = -1;
+//        for (Part p : Inventory.getAllParts()) {
+//            index++;
+//            if (p.getPartId() == id) {
+//                return index;
+//            }
+//        }
+//        return -1;
+//    }
+//    public static void updatePart(Part existingPart, String name, double price, int stock, int min, int max){
+//        
+//        existingPart.setPartId(id);
+//        existingPart.setPartName(name);
+//        existingPart.setPartPrice(price);
+//        existingPart.setPartStock(stock);
+//        existingPart.setPartMin(min);
+//        existingPart.setPartMax(max);
+//        existingPart.setMachineId(mIDCN);
+//    }
+    
     public static void updatePart(int id, Part part) {
         int index = -1;
         for (Part p : Inventory.getAllParts()) {
@@ -70,17 +93,18 @@ public class Inventory {
             }
         }
     }
-
     //TODO getpartbyid = lookuppart
     public static Part getPartById(int id) {
         for (Part p : Inventory.getAllParts()) {
             if (p.getPartId() == id) {
                 if (Model.InHousePart.class.isInstance(p)) {
                     p = (InHousePart) p;
+                    return p;
                 } else if (Model.OutsourcedPart.class.isInstance(p)) {
                     p = (OutsourcedPart) p;
+                    return p;
                 }
-                return p;
+//                return p;
             }
         }
         return null;
@@ -91,13 +115,14 @@ public class Inventory {
     }
 
     // Products ///////////////////////////////////////////////////////////////
-     public static int getProductIdAutoGen() {
+    public static int getProductIdAutoGen() {
         return productIdAutoGen;
     }
 
     public static void setProductIdAutoGen(int productIdAutoGen) {
         Inventory.productIdAutoGen = productIdAutoGen;
     }
+
     public static void addProduct(Product product) {
         allProducts.add(product);
     }

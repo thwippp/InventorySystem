@@ -18,8 +18,9 @@ public abstract class Part {
     // Constructor
     public Part(String partName, double partPrice, int partStock, int partMin, int partMax) {
 //        this.partId = partId;
-        setPartId(Inventory.getPartIdAutoGen() + 1);
-        Inventory.setPartIdAutoGen(partId);
+        int nextId = Inventory.getPartIdAutoGen() + 1;
+        setPartId(nextId);
+        Inventory.setPartIdAutoGen(nextId);
         
         this.partName = partName;
         this.partPrice = partPrice;

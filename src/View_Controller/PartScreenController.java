@@ -81,10 +81,13 @@ public class PartScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Initializes partIdTextField value
+        int id = Inventory.getPartIdAutoGen() + 1;
+        partIdTextField.setText(String.valueOf(id));
 
         // Disables text field because it is automatically generated
         partIdTextField.setDisable(true);
-        
+
         final ToggleGroup partRadioButtonToggleGroup = new ToggleGroup();
         partInHouseRadioButton.setToggleGroup(partRadioButtonToggleGroup);
         partOutsourcedRadioButton.setToggleGroup(partRadioButtonToggleGroup);
@@ -92,28 +95,30 @@ public class PartScreenController implements Initializable {
 
     //
     public void setModifyPart(Part part) {
-        selectedPart = part;
-        partIdTextField.setText(String.valueOf(selectedPart.getPartId()));
-        partNameTextField.setText(selectedPart.getPartName());
-        partPriceTextField.setText(String.valueOf(selectedPart.getPartPrice()));
-        partInventoryTextField.setText(String.valueOf(selectedPart.getPartStock()));
-        partMinTextField.setText(String.valueOf(selectedPart.getPartMin()));
-        partMaxTextField.setText(String.valueOf(selectedPart.getPartMax()));
+        if (part == null) {
+        } else {
+            selectedPart = part;
+            partIdTextField.setText(String.valueOf(selectedPart.getPartId()));  // overrides initial value if modifying
+            partNameTextField.setText(selectedPart.getPartName());
+            partPriceTextField.setText(String.valueOf(selectedPart.getPartPrice()));
+            partInventoryTextField.setText(String.valueOf(selectedPart.getPartStock()));
+            partMinTextField.setText(String.valueOf(selectedPart.getPartMin()));
+            partMaxTextField.setText(String.valueOf(selectedPart.getPartMax()));
 
-        // Checks for the type of part and sets the Machine Id or
-        //   Company Name based on the subclass
-        if (Model.InHousePart.class.isInstance(selectedPart)) {
-            partInHouseRadioButton.setSelected(true);
-            partMICNLabel.setText("Machine Id");
-            String value = String.valueOf(((InHousePart) selectedPart).getMachineId());
-            partMICNTextField.setText(value);
-        } else if (Model.OutsourcedPart.class.isInstance(selectedPart)) {
-            partOutsourcedRadioButton.setSelected(true);
-            partMICNLabel.setText("Company Name");
-            String value = ((OutsourcedPart) selectedPart).getCompanyName();
-            partMICNTextField.setText(value);
+            // Checks for the type of part and sets the Machine Id or
+            //   Company Name based on the subclass
+            if (Model.InHousePart.class.isInstance(selectedPart)) {
+                partInHouseRadioButton.setSelected(true);
+                partMICNLabel.setText("Machine Id");
+                String value = String.valueOf(((InHousePart) selectedPart).getMachineId());
+                partMICNTextField.setText(value);
+            } else if (Model.OutsourcedPart.class.isInstance(selectedPart)) {
+                partOutsourcedRadioButton.setSelected(true);
+                partMICNLabel.setText("Company Name");
+                String value = ((OutsourcedPart) selectedPart).getCompanyName();
+                partMICNTextField.setText(value);
+            }
         }
-
     }
 
     // Radio button actions
@@ -141,50 +146,49 @@ public class PartScreenController implements Initializable {
         int min = Integer.parseInt(partMinTextField.getText());
         int max = Integer.parseInt(partMaxTextField.getText());
 
-        if (partInHouseRadioButton.isSelected()) {
+        boolean isInHouse = partInHouseRadioButton.isSelected();
+        boolean isOutsourced = partOutsourcedRadioButton.isSelected();
+
+        if (isInHouse) {
             int mIDCN = Integer.parseInt(partMICNTextField.getText());
 
-            if (Inventory.partExists(id)) {
+            boolean partExists = Inventory.partExists(id);
+            if (partExists) {
                 InHousePart existingPart = (InHousePart) Inventory.getPartById(id);
-
                 existingPart.setPartId(id);
                 existingPart.setPartName(name);
                 existingPart.setPartPrice(price);
                 existingPart.setPartStock(stock);
                 existingPart.setPartMin(min);
                 existingPart.setPartMax(max);
-                ((InHousePart) existingPart).setMachineId(mIDCN);
+                existingPart.setMachineId(mIDCN);
 
-                Inventory.updatePart(id, existingPart);
-            } // end if part exists inhouse
-            else {
-                InHousePart p = new InHousePart(name, price, stock, min, max, mIDCN);
-                Inventory.addPart(p);
-            } // end else part exists inhouse
-        } // end if inhousepart
-        else if (partOutsourcedRadioButton.isSelected()) {
+//                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
+            } else {
+                InHousePart ihp = new InHousePart(name, price, stock, min, max, mIDCN);
+                Inventory.addPart(ihp);
+            }
+
+        } else if (isOutsourced) {
             String mIDCN = partMICNTextField.getText();
-
-            if (Inventory.partExists(id)) {
+            boolean partExists = Inventory.partExists(id);
+            if (partExists) {
                 OutsourcedPart existingPart = (OutsourcedPart) Inventory.getPartById(id);
-
                 existingPart.setPartId(id);
                 existingPart.setPartName(name);
                 existingPart.setPartPrice(price);
                 existingPart.setPartStock(stock);
                 existingPart.setPartMin(min);
                 existingPart.setPartMax(max);
-                ((OutsourcedPart) existingPart).setCompanyName(mIDCN);
+                existingPart.setCompanyName(mIDCN);
 
-                Inventory.updatePart(id, existingPart);
-            } // end if part exists outsoureced 
-            else {
-                OutsourcedPart p = new OutsourcedPart(name, price, stock, min, max, mIDCN);
-                Inventory.addPart(p);
-            }// end else outsourced
-        } // end else if outsourced
-        else {
-            // do nothing
+//                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
+            } else {
+                OutsourcedPart op = new OutsourcedPart(name, price, stock, min, max, mIDCN);
+                Inventory.addPart(op);
+            }
+        } else {
+            // INVALID PART
         }
 
         // Go back to main screen
@@ -193,7 +197,7 @@ public class PartScreenController implements Initializable {
         Stage stage = (Stage) partSaveButton.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-    } // end save button action
+    }
 
     // Part cancel button action
     @FXML
