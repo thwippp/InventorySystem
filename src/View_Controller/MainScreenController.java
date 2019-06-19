@@ -170,8 +170,7 @@ public class MainScreenController implements Initializable {
         stage.show();
 
         PartScreenController controller = loader.getController();
-//        Part p = partsTableView.getSelectionModel().getSelectedItem();
-        controller.setModifyPart(null);  // throws weird errors but still works
+        controller.setModifyPart(null);  // did throw weird error but still works
     }
 
     // Parts modify button action
@@ -236,7 +235,7 @@ public class MainScreenController implements Initializable {
         stage.show();
 
         ProductScreenController controller = loader.getController();
-        productsTableView.getSelectionModel().clearSelection();
+        controller.setModifyProduct(null);
     }
 
     @FXML

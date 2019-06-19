@@ -19,8 +19,12 @@ public class Product {
     private int productMin;
     private int productMax;
 
-    public Product(int productId, String productName, double productPrice, int productStock, int productMin, int productMax) {
-        this.productId = productId;
+    public Product(String productName, double productPrice, int productStock, int productMin, int productMax) {
+//        this.productId = productId;
+        int nextId = Inventory.getProductIdAutoGen() + 1;
+        setProductId(nextId);
+        Inventory.setProductIdAutoGen(nextId);
+        
         this.productName = productName;
         this.productPrice = productPrice;
         this.productStock = productStock;

@@ -51,9 +51,9 @@ public class InventorySystemBrianSchaffeld extends Application {
         Inventory.addPart(d);
 
         // Creates product data 
-        Product pA = new Product(1, "Product A", 1.11, 1, 0, 1);
-        Product pB = new Product(2, "Product B", 2.22, 2, 1, 2);
-        Product pC = new Product(3, "Product C", 3.33, 3, 2, 3);
+        Product pA = new Product("Product A", 1.11, 1, 0, 1);
+        Product pB = new Product("Product B", 2.22, 2, 1, 2);
+        Product pC = new Product("Product C", 3.33, 3, 2, 3);
 
         Inventory.addProduct(pA);
         Inventory.addProduct(pB);

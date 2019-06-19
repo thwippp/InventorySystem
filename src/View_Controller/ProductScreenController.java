@@ -107,6 +107,7 @@ public class ProductScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Disables text field because it is automatically generated
         productIdTextField.setDisable(true);
+        productIdTextField.setText(String.valueOf(Inventory.getProductIdAutoGen() + 1));
 
         // TODO
         // Gets current list of parts in ProductScreen
@@ -150,17 +151,29 @@ public class ProductScreenController implements Initializable {
         // if no product exists, add new product
 
         int id = Integer.parseInt(productIdTextField.getText());
+        String name = productNameTextField.getText();
+        double price = Double.parseDouble(productPriceTextField.getText());
+        int stock = Integer.parseInt(productInventoryTextField.getText());
+        int min = Integer.parseInt(productMinTextField.getText());
+        int max = Integer.parseInt(productMaxTextField.getText());
         if (Inventory.productExists(id)) {
             Product existingProduct = Inventory.getProductById(id);
-            Inventory.updateProduct(id, existingProduct);
+            existingProduct.setProductId(id);
+            existingProduct.setProductName(name);
+            existingProduct.setProductPrice(price);
+            existingProduct.setProductStock(stock);
+            existingProduct.setProductMin(min);
+            existingProduct.setProductMax(max);
+            
+//            Inventory.updateProduct(id, existingProduct);
         } else {
-            String name = productNameTextField.getText();
-            double price = Double.parseDouble(productPriceTextField.getText());
-            int stock = Integer.parseInt(productInventoryTextField.getText());
-            int min = Integer.parseInt(productMinTextField.getText());
-            int max = Integer.parseInt(productMaxTextField.getText());
+//            String name = productNameTextField.getText();
+//            double price = Double.parseDouble(productPriceTextField.getText());
+//            int stock = Integer.parseInt(productInventoryTextField.getText());
+//            int min = Integer.parseInt(productMinTextField.getText());
+//            int max = Integer.parseInt(productMaxTextField.getText());
 
-            Product savedProduct = new Product(id, name, price, stock, min, max);
+            Product savedProduct = new Product(name, price, stock, min, max);
             Inventory.addProduct(savedProduct);
         }
 
@@ -190,19 +203,23 @@ public class ProductScreenController implements Initializable {
     }
 
     public void setModifyProduct(Product product) {
-        selectedProduct = product;
+        if (product == null) {
+        } else {
 
-        productIdTextField.setText(String.valueOf(selectedProduct.getProductId()));
-        productNameTextField.setText(selectedProduct.getProductName());
-        productPriceTextField.setText(String.valueOf(selectedProduct.getProductPrice()));
-        productInventoryTextField.setText(String.valueOf(selectedProduct.getProductStock()));
-        productMinTextField.setText(String.valueOf(selectedProduct.getProductMin()));
-        productMaxTextField.setText(String.valueOf(selectedProduct.getProductMax()));
+            selectedProduct = product;
 
-        associatedPartsTableView.setItems(selectedProduct.getAllAssociatedParts());
-        associatedPartsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
-        associatedPartsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
-        associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
-        associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
-    }
+            productIdTextField.setText(String.valueOf(selectedProduct.getProductId()));
+            productNameTextField.setText(selectedProduct.getProductName());
+            productPriceTextField.setText(String.valueOf(selectedProduct.getProductPrice()));
+            productInventoryTextField.setText(String.valueOf(selectedProduct.getProductStock()));
+            productMinTextField.setText(String.valueOf(selectedProduct.getProductMin()));
+            productMaxTextField.setText(String.valueOf(selectedProduct.getProductMax()));
+
+            associatedPartsTableView.setItems(selectedProduct.getAllAssociatedParts());
+            associatedPartsIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("partId"));
+            associatedPartsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
+            associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
+            associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+        }
+    } // end setmodifyproduct
 }
