@@ -30,7 +30,8 @@ public class Inventory {
         return allParts;
     }
 
-    public static ObservableList<Part> getFilteredParts(String partName) {
+    // Looks for part (formerly getFilteredParts)
+    public static ObservableList<Part> lookupPart(String partName) {
         clearFilteredParts();
         for (Part part : Inventory.getAllParts()) {
             if (part.getPartName().equals(partName)) {
@@ -41,7 +42,7 @@ public class Inventory {
     }
 
     public static void addPart(Part part) {
-        
+
         allParts.add(part);
     }
 
@@ -63,40 +64,19 @@ public class Inventory {
         return exists;
     }
 
-//    public static int getPartIndex(int id) {
-//        int index = -1;
-//        for (Part p : Inventory.getAllParts()) {
-//            index++;
-//            if (p.getPartId() == id) {
-//                return index;
-//            }
-//        }
-//        return -1;
-//    }
-//    public static void updatePart(Part existingPart, String name, double price, int stock, int min, int max){
-//        
-//        existingPart.setPartId(id);
-//        existingPart.setPartName(name);
-//        existingPart.setPartPrice(price);
-//        existingPart.setPartStock(stock);
-//        existingPart.setPartMin(min);
-//        existingPart.setPartMax(max);
-//        existingPart.setMachineId(mIDCN);
-//    }
-    
-    public static void updatePart(int id, Part part) {
-        int index = -1;
+    public static void updatePart(int index, Part part) {
+        int i = -1;
         for (Part p : Inventory.getAllParts()) {
-            index++;
-            if (p.getPartId() == id) {
-                Inventory.getAllParts().set(index, part);
+            i++;
+            if (p.getPartId() == index) {
+                Inventory.getAllParts().set(i, part);
             }
         }
     }
-    //TODO getpartbyid = lookuppart
-    public static Part getPartById(int id) {
+
+    public static Part lookupPart(int partId) {
         for (Part p : Inventory.getAllParts()) {
-            if (p.getPartId() == id) {
+            if (p.getPartId() == partId) {
                 if (Model.InHousePart.class.isInstance(p)) {
                     p = (InHousePart) p;
                     return p;
@@ -144,12 +124,12 @@ public class Inventory {
         return false;
     }
 
-    public static void updateProduct(int id, Product product) {
-        int index = -1;
+    public static void updateProduct(int index, Product product) {
+        int i = -1;
         for (Product p : Inventory.getAllProducts()) {
-            index++;
-            if (p.getProductId() == id) {
-                Inventory.getAllProducts().set(index, product);
+            i++;
+            if (p.getProductId() == index) {
+                Inventory.getAllProducts().set(i, product);
             }
         }
     }
@@ -157,11 +137,10 @@ public class Inventory {
     public static void clearFilteredProducts() {
         filteredProducts.clear();
     }
-// TODO getproductbyid = lookupproduct
 
-    public static Product getProductById(int id) {
+    public static Product lookupProduct(int productId) {
         for (Product p : Inventory.getAllProducts()) {
-            if (p.getProductId() == id) {
+            if (p.getProductId() == productId) {
                 return p;
             }
         }
@@ -172,7 +151,8 @@ public class Inventory {
         return allProducts;
     }
 
-    public static ObservableList<Product> getFilteredProducts(String productName) {
+    // Formerly getFilteredProducts
+    public static ObservableList<Product> lookupProduct(String productName) {
         clearFilteredProducts();
         for (Product product : Inventory.getAllProducts()) {
             if (product.getProductName().equals(productName)) {
@@ -183,14 +163,3 @@ public class Inventory {
     }
 
 }
-
-// TODO-- Implement?
-//public ObservableList<Part> lookupPart(String partName){
-//    // return Part
-//}
-//
-//public ObservableList<Product> lookupProduct(String productName){
-//    // return Product
-//}
-//
-

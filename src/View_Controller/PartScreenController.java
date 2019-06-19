@@ -17,7 +17,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -95,8 +97,7 @@ public class PartScreenController implements Initializable {
 
     //
     public void setModifyPart(Part part) {
-        if (part == null) {
-        } else {
+        if (part != null) {
             selectedPart = part;
             partIdTextField.setText(String.valueOf(selectedPart.getPartId()));  // overrides initial value if modifying
             partNameTextField.setText(selectedPart.getPartName());
@@ -146,67 +147,99 @@ public class PartScreenController implements Initializable {
         int min = Integer.parseInt(partMinTextField.getText());
         int max = Integer.parseInt(partMaxTextField.getText());
 
-        boolean isInHouse = partInHouseRadioButton.isSelected();
-        boolean isOutsourced = partOutsourcedRadioButton.isSelected();
+        if (min <= max) {
+            boolean isInHouse = partInHouseRadioButton.isSelected();
+            boolean isOutsourced = partOutsourcedRadioButton.isSelected();
 
-        if (isInHouse) {
-            int mIDCN = Integer.parseInt(partMICNTextField.getText());
+            if (isInHouse) {
+                int mIDCN = Integer.parseInt(partMICNTextField.getText());
 
-            boolean partExists = Inventory.partExists(id);
-            if (partExists) {
-                InHousePart existingPart = (InHousePart) Inventory.getPartById(id);
-                existingPart.setPartId(id);
-                existingPart.setPartName(name);
-                existingPart.setPartPrice(price);
-                existingPart.setPartStock(stock);
-                existingPart.setPartMin(min);
-                existingPart.setPartMax(max);
-                existingPart.setMachineId(mIDCN);
+                boolean partExists = Inventory.partExists(id);
+                if (partExists) {
+                    InHousePart existingPart = (InHousePart) Inventory.lookupPart(id);
+                    existingPart.setPartId(id);
+                    existingPart.setPartName(name);
+                    existingPart.setPartPrice(price);
+                    existingPart.setPartStock(stock);
+                    existingPart.setPartMin(min);
+                    existingPart.setPartMax(max);
+                    existingPart.setMachineId(mIDCN);
+
+                    //TODO-- double-check how you want to implement updatePart/overloaded constructors
+//                InHousePart ihp = new InHousePart(id, name, price, stock, min, max, mIDCN);
+//                Inventory.updatePart(name, price, stock, min, max, mIDCN, InHouse)
+                    // lookup part by name-- if I get null, it is new
+//                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
+                } else {
+                    InHousePart ihp = new InHousePart(name, price, stock, min, max, mIDCN);
+                    Inventory.addPart(ihp);
+                }
+
+            } else if (isOutsourced) {
+                String mIDCN = partMICNTextField.getText();
+                boolean partExists = Inventory.partExists(id);
+                if (partExists) {
+                    OutsourcedPart existingPart = (OutsourcedPart) Inventory.lookupPart(id);
+                    existingPart.setPartId(id);
+                    existingPart.setPartName(name);
+                    existingPart.setPartPrice(price);
+                    existingPart.setPartStock(stock);
+                    existingPart.setPartMin(min);
+                    existingPart.setPartMax(max);
+                    existingPart.setCompanyName(mIDCN);
 
 //                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
+                } else {
+                    OutsourcedPart op = new OutsourcedPart(name, price, stock, min, max, mIDCN);
+                    Inventory.addPart(op);
+                }
             } else {
-                InHousePart ihp = new InHousePart(name, price, stock, min, max, mIDCN);
-                Inventory.addPart(ihp);
+                // INVALID PART
             }
 
-        } else if (isOutsourced) {
-            String mIDCN = partMICNTextField.getText();
-            boolean partExists = Inventory.partExists(id);
-            if (partExists) {
-                OutsourcedPart existingPart = (OutsourcedPart) Inventory.getPartById(id);
-                existingPart.setPartId(id);
-                existingPart.setPartName(name);
-                existingPart.setPartPrice(price);
-                existingPart.setPartStock(stock);
-                existingPart.setPartMin(min);
-                existingPart.setPartMax(max);
-                existingPart.setCompanyName(mIDCN);
-
-//                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
-            } else {
-                OutsourcedPart op = new OutsourcedPart(name, price, stock, min, max, mIDCN);
-                Inventory.addPart(op);
-            }
+            // Go back to main screen
+            Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) partSaveButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
         } else {
-            // INVALID PART
-        }
+            String title = "Warning";
+            String header = "Data input error";
+            String content = "Max value is less than Min value.  Please try again.";
 
-        // Go back to main screen
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) partSaveButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        }
     }
 
     // Part cancel button action
     @FXML
     private void partCancelButtonAction() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) partCancelButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        String title = "Cancel";
+        String header = "Are you sure you want to cancel?";
+        String content = "Are you sure you want to cancel and return to the Main Screen?";
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) partCancelButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            // User Cancelled
+            //   stay on PartScreen
+        }
+
     }
 
 }

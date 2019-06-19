@@ -13,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -30,7 +31,6 @@ public class InventorySystemBrianSchaffeld extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Inventory System || Brian Schaffeld || ID# 000790777"); // TODO-- catchy name
-
     }
 
     /**

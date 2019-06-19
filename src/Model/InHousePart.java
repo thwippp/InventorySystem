@@ -13,6 +13,10 @@ public class InHousePart extends Part {
         setMachineId(machineId);
     }
 
+//     public InHousePart(int id, String partName, double partPrice, int partStock, int partMin, int partMax, int machineId) {
+//        super(id, partName, partPrice, partStock, partMin, partMax);
+//        setMachineId(machineId);
+//    }
     // Setters
     public void setMachineId(int machineId) {
         this.machineId = machineId;

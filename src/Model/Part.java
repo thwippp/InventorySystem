@@ -21,7 +21,7 @@ public abstract class Part {
         int nextId = Inventory.getPartIdAutoGen() + 1;
         setPartId(nextId);
         Inventory.setPartIdAutoGen(nextId);
-        
+
         this.partName = partName;
         this.partPrice = partPrice;
         this.partStock = partStock;
@@ -29,6 +29,14 @@ public abstract class Part {
         this.partMax = partMax;
     }
 
+//    public Part(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
+//        this.partId = partId;
+//        this.partName = partName;
+//        this.partPrice = partPrice;
+//        this.partStock = partStock;
+//        this.partMin = partMin;
+//        this.partMax = partMax;
+//    }
     public int getPartId() {
         return partId;
     }

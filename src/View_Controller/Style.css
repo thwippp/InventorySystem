@@ -46,6 +46,7 @@ and open the template in the editor.
     -fx-text-fill: primary-text-color;
     -fx-border-width: 2px;
     -fx-border-color: transparent;
+    -fx-accent: accent-color;
 }
 
 .text-field:focused{
@@ -58,12 +59,8 @@ and open the template in the editor.
     -fx-text-fill: primary-text-color;
 }
 
-// TODO Can't get the radio selected stuff to work... Idk what I'm doing wrong.
-// https://stackoverflow.com/questions/12038179/javafx-2-0-how-to-change-the-size-of-the-radio-buttons-circle-with-css?rq=1
-// https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/doc-files/cssref.html#togglebutton
-.toggle-button:selected{
-    -fx-background-color: accent-color;
-    -fx-border-color: accent-color;
+.radio-button:selected{
+    -fx-focus-color: accent-color;
 }
 
 .table-view{

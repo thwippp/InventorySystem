@@ -12,7 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -129,7 +131,7 @@ public class ProductScreenController implements Initializable {
             partsTableView.setItems(null);
             partsTableView.setItems(Inventory.getAllParts());
         } else {
-            partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
+            partsTableView.setItems(Inventory.lookupPart(searchTerm));
         }
     }
 
@@ -157,14 +159,14 @@ public class ProductScreenController implements Initializable {
         int min = Integer.parseInt(productMinTextField.getText());
         int max = Integer.parseInt(productMaxTextField.getText());
         if (Inventory.productExists(id)) {
-            Product existingProduct = Inventory.getProductById(id);
+            Product existingProduct = Inventory.lookupProduct(id);
             existingProduct.setProductId(id);
             existingProduct.setProductName(name);
             existingProduct.setProductPrice(price);
             existingProduct.setProductStock(stock);
             existingProduct.setProductMin(min);
             existingProduct.setProductMax(max);
-            
+
 //            Inventory.updateProduct(id, existingProduct);
         } else {
 //            String name = productNameTextField.getText();
@@ -188,23 +190,53 @@ public class ProductScreenController implements Initializable {
     // Part cancel button action
     @FXML
     private void productCancelButtonAction() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) productCancelButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        String title = "Cancel";
+        String header = "Are you sure you want to cancel?";
+        String content = "Are you sure you want to cancel and return to the Main Screen?";
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) productCancelButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            // User Cancelled
+            //   stay on ProductScreen
+        }
     }
 
     // Product Delete Button Action
     @FXML
     private void associatedPartsDeleteButtonAction() {
-        Part dissociatedPart = (Part) associatedPartsTableView.getSelectionModel().getSelectedItem();
-        associatedPartsTableView.getItems().remove(dissociatedPart);
+        String title = "Delete";
+        String header = "Really?";
+        String content = "Are you sure you want to delete that Associated Part?";
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            Part dissociatedPart = (Part) associatedPartsTableView.getSelectionModel().getSelectedItem();
+            associatedPartsTableView.getItems().remove(dissociatedPart);
+        } else {
+            // User Cancelled
+            //   do not delete AssociatedPart
+        }
+
     }
 
     public void setModifyProduct(Product product) {
-        if (product == null) {
-        } else {
+        if (product != null) {
 
             selectedProduct = product;
 
@@ -221,5 +253,5 @@ public class ProductScreenController implements Initializable {
             associatedPartsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
             associatedPartsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
         }
-    } // end setmodifyproduct
+    }
 }

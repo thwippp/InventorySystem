@@ -24,7 +24,7 @@ public class Product {
         int nextId = Inventory.getProductIdAutoGen() + 1;
         setProductId(nextId);
         Inventory.setProductIdAutoGen(nextId);
-        
+
         this.productName = productName;
         this.productPrice = productPrice;
         this.productStock = productStock;

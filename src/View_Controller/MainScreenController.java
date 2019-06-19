@@ -14,7 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -146,7 +148,7 @@ public class MainScreenController implements Initializable {
             partsTableView.setItems(null);
             partsTableView.setItems(Inventory.getAllParts());
         } else {
-            partsTableView.setItems(Inventory.getFilteredParts(searchTerm));
+            partsTableView.setItems(Inventory.lookupPart(searchTerm));
         }
     }
 
@@ -196,8 +198,23 @@ public class MainScreenController implements Initializable {
     // Part Delete Button Action
     @FXML
     private void partDeleteButtonAction() {
-        Part p = partsTableView.getSelectionModel().getSelectedItem();
-        partsTableView.getItems().remove(p);
+        String title = "Delete";
+        String header = "Really?";
+        String content = "Are you sure you want to delete that Part?";
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            Part p = partsTableView.getSelectionModel().getSelectedItem();
+            partsTableView.getItems().remove(p);
+        } else {
+            // User Cancelled
+            //   do not delete Part
+        }
     }
 
     // Products Search Button Action
@@ -216,7 +233,7 @@ public class MainScreenController implements Initializable {
             productsTableView.setItems(null);
             productsTableView.setItems(Inventory.getAllProducts());
         } else {
-            productsTableView.setItems(Inventory.getFilteredProducts(searchTerm));
+            productsTableView.setItems(Inventory.lookupProduct(searchTerm));
         }
     }
 
@@ -266,9 +283,23 @@ public class MainScreenController implements Initializable {
     // Product delete button action
     @FXML
     private void productsDeleteButtonAction() {
-        Product p = productsTableView.getSelectionModel().getSelectedItem();
-        productsTableView.getItems().remove(p);
+        String title = "Delete";
+        String header = "Really?";
+        String content = "Are you sure you want to delete that Product?";
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            Product p = productsTableView.getSelectionModel().getSelectedItem();
+            productsTableView.getItems().remove(p);
+        } else {
+            // User Cancelled
+            //   do not delete Product
+        }
     }
 
     // Exit button action
