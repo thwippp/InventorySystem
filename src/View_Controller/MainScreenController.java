@@ -32,8 +32,8 @@ import javafx.stage.Stage;
 public class MainScreenController implements Initializable {
 
     // Instance Variables for Parts
-    @FXML
-    private Label partsLabel;
+//    @FXML
+//    private Label partsLabel;
     @FXML
     private TableView<Part> partsTableView;
     @FXML
@@ -44,20 +44,20 @@ public class MainScreenController implements Initializable {
     private TableColumn<Part, Integer> partsInventoryTableColumn;
     @FXML
     private TableColumn<Part, Double> partsPriceTableColumn;
-    @FXML
-    private Button partsSearchButton;
+//    @FXML
+//    private Button partsSearchButton;
     @FXML
     private TextField partsSearchTextField;
-    @FXML
-    private Button partsAddButton;
+//    @FXML
+//    private Button partsAddButton;
     @FXML
     private Button partsModifyButton;
-    @FXML
-    private Button partsDeleteButton;
+//    @FXML
+//    private Button partsDeleteButton;
 
     // Instance Variables for Products
-    @FXML
-    private Label productsLabel;
+//    @FXML
+//    private Label productsLabel;
     @FXML
     private TableView<Product> productsTableView;
     @FXML
@@ -68,16 +68,16 @@ public class MainScreenController implements Initializable {
     private TableColumn<Product, Integer> productsInventoryTableColumn;
     @FXML
     private TableColumn<Product, Double> productsPriceTableColumn;
-    @FXML
-    private Button productsSearchButton;
+//    @FXML
+//    private Button productsSearchButton;
     @FXML
     private TextField productsSearchTextField;
-    @FXML
-    private Button productsAddButton;
+//    @FXML
+//    private Button productsAddButton;
     @FXML
     private Button productsModifyButton;
-    @FXML
-    private Button productsDeleteButton;
+//    @FXML
+//    private Button productsDeleteButton;
 
     // Instance variables for Main Screen
     @FXML

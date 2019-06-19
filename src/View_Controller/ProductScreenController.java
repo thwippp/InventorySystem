@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,20 +30,20 @@ public class ProductScreenController implements Initializable {
     // Instance Variables
 
     // Labels and Buttons
-    @FXML
-    private Label addProductLabel;
-    @FXML
-    private Label productIdLabel;
-    @FXML
-    private Label productNameLabel;
-    @FXML
-    private Label productInventoryLabel;
-    @FXML
-    private Label productPriceLabel;
-    @FXML
-    private Label productMinLabel;
-    @FXML
-    private Label productMaxLabel;
+//    @FXML
+//    private Label addProductLabel;
+//    @FXML
+//    private Label productIdLabel;
+//    @FXML
+//    private Label productNameLabel;
+//    @FXML
+//    private Label productInventoryLabel;
+//    @FXML
+//    private Label productPriceLabel;
+//    @FXML
+//    private Label productMinLabel;
+//    @FXML
+//    private Label productMaxLabel;
     @FXML
     private Button productSaveButton;
     @FXML
@@ -65,8 +64,8 @@ public class ProductScreenController implements Initializable {
     private TextField productMaxTextField;
 
     // Instance Variables for Parts
-    @FXML
-    private Label partsLabel;
+//    @FXML
+//    private Label partsLabel;
     @FXML
     private TableView<Part> partsTableView;
     @FXML
@@ -77,16 +76,16 @@ public class ProductScreenController implements Initializable {
     private TableColumn<Part, Integer> partsInventoryTableColumn;
     @FXML
     private TableColumn<Part, Double> partsPriceTableColumn;
-    @FXML
-    private Button partsSearchButton;
+//    @FXML
+//    private Button partsSearchButton;
     @FXML
     private TextField partsSearchTextField;
-    @FXML
-    private Button partsAddButton;
+//    @FXML
+//    private Button partsAddButton;
 
     // Instance Variables for Associated Parts
-    @FXML
-    private Label associatedPartsLabel;
+//    @FXML
+//    private Label associatedPartsLabel;
     @FXML
     private TableView<Part> associatedPartsTableView;
     @FXML
@@ -97,8 +96,8 @@ public class ProductScreenController implements Initializable {
     private TableColumn<Part, Integer> associatedPartsInventoryTableColumn;
     @FXML
     private TableColumn<Part, Double> associatedPartsPriceTableColumn;
-    @FXML
-    private Button associatedPartsDeleteButton;
+//    @FXML
+//    private Button associatedPartsDeleteButton;
 
     private static Product selectedProduct;
 

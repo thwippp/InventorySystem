@@ -35,24 +35,24 @@ public class PartScreenController implements Initializable {
     // Instance Variables
 
     // Labels and Buttons
-    @FXML
-    private Label addPartLabel;
+//    @FXML
+//    private Label addPartLabel;
     @FXML
     private RadioButton partInHouseRadioButton;
     @FXML
     private RadioButton partOutsourcedRadioButton;
-    @FXML
-    private Label partIdLabel;
-    @FXML
-    private Label partNameLabel;
-    @FXML
-    private Label partInventoryLabel;
-    @FXML
-    private Label partPriceLabel;
-    @FXML
-    private Label partMinLabel;
-    @FXML
-    private Label partMaxLabel;
+//    @FXML
+//    private Label partIdLabel;
+//    @FXML
+//    private Label partNameLabel;
+//    @FXML
+//    private Label partInventoryLabel;
+//    @FXML
+//    private Label partPriceLabel;
+//    @FXML
+//    private Label partMinLabel;
+//    @FXML
+//    private Label partMaxLabel;
     @FXML
     private Label partMICNLabel;
     @FXML
