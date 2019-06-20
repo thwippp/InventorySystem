@@ -155,7 +155,7 @@
                                             <children>
                                                 <TextField fx:id="partsSearchTextField" promptText="Search Parts" />
                                                 <Button fx:id="partsSearchButton" mnemonicParsing="false" onAction="#partsSearchButtonAction" text="Search" />
-                                    <Button fx:id="partsClearSearchButton" mnemonicParsing="false" onAction="#partsClearSearchButtonAction" text="Clear" />
+                                                <Button fx:id="partsClearSearchButton" mnemonicParsing="false" onAction="#partsClearSearchButtonAction" text="Clear" />
                                                 <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                                     <buttons>
                                                         <Button fx:id="partsAddButton" mnemonicParsing="false" onAction="#partsAddButtonAction" text="Add to Associated Parts" />

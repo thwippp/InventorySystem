@@ -148,61 +148,56 @@ public class PartScreenController implements Initializable {
         int max = Integer.parseInt(partMaxTextField.getText());
 
         if (min <= max) {
+
+            // if part exists, get part type.  Get radio button.  Cast to type of button.
+            // if part not exists, get radio button.  Add new part of type of button.
+            Part existingPart = Inventory.lookupPart(id);
+
             boolean isInHouse = partInHouseRadioButton.isSelected();
             boolean isOutsourced = partOutsourcedRadioButton.isSelected();
 
+            // If part exists...
+            if (existingPart != null) {
+                Inventory.deletePart(existingPart);
+                Inventory.cancelPartIdAutoGen();
+            }
             if (isInHouse) {
                 int mIDCN = Integer.parseInt(partMICNTextField.getText());
+                InHousePart existingInHousePart = new InHousePart(name, price, stock, min, max, mIDCN);
+                existingInHousePart.setPartId(id);
+                Inventory.addPart(existingInHousePart);
 
-                boolean partExists = Inventory.partExists(id);
-                if (partExists) {
-                    InHousePart existingPart = (InHousePart) Inventory.lookupPart(id);
-                    existingPart.setPartId(id);
-                    existingPart.setPartName(name);
-                    existingPart.setPartPrice(price);
-                    existingPart.setPartStock(stock);
-                    existingPart.setPartMin(min);
-                    existingPart.setPartMax(max);
-                    existingPart.setMachineId(mIDCN);
-
-                    //TODO-- double-check how you want to implement updatePart/overloaded constructors
-//                InHousePart ihp = new InHousePart(id, name, price, stock, min, max, mIDCN);
-//                Inventory.updatePart(name, price, stock, min, max, mIDCN, InHouse)
-                    // lookup part by name-- if I get null, it is new
-//                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
-                } else {
-                    InHousePart ihp = new InHousePart(name, price, stock, min, max, mIDCN);
-                    Inventory.addPart(ihp);
-                }
-
+                // Go back to main screen
+                Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) partSaveButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
             } else if (isOutsourced) {
                 String mIDCN = partMICNTextField.getText();
-                boolean partExists = Inventory.partExists(id);
-                if (partExists) {
-                    OutsourcedPart existingPart = (OutsourcedPart) Inventory.lookupPart(id);
-                    existingPart.setPartId(id);
-                    existingPart.setPartName(name);
-                    existingPart.setPartPrice(price);
-                    existingPart.setPartStock(stock);
-                    existingPart.setPartMin(min);
-                    existingPart.setPartMax(max);
-                    existingPart.setCompanyName(mIDCN);
+                OutsourcedPart existingOutsourcedPart = new OutsourcedPart(name, price, stock, min, max, mIDCN);
+                existingOutsourcedPart.setPartId(id);
+                Inventory.addPart(existingOutsourcedPart);
 
-//                Inventory.updatePart(id, existingPart);  //TODO-- create a method to update
-                } else {
-                    OutsourcedPart op = new OutsourcedPart(name, price, stock, min, max, mIDCN);
-                    Inventory.addPart(op);
-                }
+                // Go back to main screen
+                Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) partSaveButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
             } else {
-                // INVALID PART
+                // no part type selected
+                String title = "Warning";
+                String header = "Invalid Part";
+                String content = "Please ensure that you have selected a valid Part Type: 'InHouse or Outsourced Part'";
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle(title);
+                alert.setHeaderText(header);
+                alert.setContentText(content);
+                alert.showAndWait();
             }
 
-            // Go back to main screen
-            Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) partSaveButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
         } else {
             String title = "Warning";
             String header = "Data input error";

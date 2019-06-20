@@ -95,8 +95,8 @@ public class Product {
     public ObservableList<Part> getAllAssociatedParts() {
         return this.associatedParts;
     }
-    
-        // Temp Parts
+
+    // Temp Parts
     public void addTempPart(Part associatedPart) {
         this.tempParts.add(associatedPart);
     }

@@ -1,4 +1,3 @@
-
 package inventorysystembrianschaffeld;
 
 import Model.InHousePart;

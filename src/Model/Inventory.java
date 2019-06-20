@@ -26,6 +26,10 @@ public class Inventory {
         Inventory.partIdAutoGen = partIdAutoGen;
     }
 
+    public static void cancelPartIdAutoGen() {
+        Inventory.setPartIdAutoGen(Inventory.getPartIdAutoGen() - 1);
+    }
+
     public static ObservableList<Part> getAllParts() {
         return allParts;
     }
