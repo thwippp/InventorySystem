@@ -11,6 +11,7 @@ public class Product {
 
     // Instance Variables
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private ObservableList<Part> tempParts = FXCollections.observableArrayList();
 
     private int productId;
     private String productName;
@@ -93,6 +94,19 @@ public class Product {
 
     public ObservableList<Part> getAllAssociatedParts() {
         return this.associatedParts;
+    }
+    
+        // Temp Parts
+    public void addTempPart(Part associatedPart) {
+        this.tempParts.add(associatedPart);
+    }
+
+    public void deleteTempPart(Part associatedPart) {
+        this.tempParts.remove(associatedPart);
+    }
+
+    public ObservableList<Part> getAllTempParts() {
+        return this.tempParts;
     }
 
 }

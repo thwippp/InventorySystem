@@ -1,13 +1,11 @@
 package View_Controller;
 
-import Model.InHousePart;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -134,7 +131,7 @@ public class MainScreenController implements Initializable {
 
     // Parts search button action
     @FXML
-    void partsSearchButtonAction(ActionEvent event) {
+    private void partsSearchButtonAction(ActionEvent event) {
         //TODO
         // Get search term (dynamically find field based on input type?)-- right now part name
         // Get list of current parts
@@ -150,6 +147,13 @@ public class MainScreenController implements Initializable {
         } else {
             partsTableView.setItems(Inventory.lookupPart(searchTerm));
         }
+    }
+
+    @FXML
+    private void partsClearSearchButtonAction(ActionEvent event) {
+        partsSearchTextField.clear();
+        partsTableView.setItems(null);
+        partsTableView.setItems(Inventory.getAllParts());
     }
 
     @FXML
@@ -219,7 +223,7 @@ public class MainScreenController implements Initializable {
 
     // Products Search Button Action
     @FXML
-    void productsSearchButtonAction(ActionEvent event) {
+    private void productsSearchButtonAction(ActionEvent event) {
         //TODO  
         // Get search term (dynamically find field based on input type?)-- right now part name
         // Get list of current parts
@@ -235,6 +239,13 @@ public class MainScreenController implements Initializable {
         } else {
             productsTableView.setItems(Inventory.lookupProduct(searchTerm));
         }
+    }
+
+    @FXML
+    private void productsClearSearchButtonAction(ActionEvent event) {
+        productsSearchTextField.clear();
+        productsTableView.setItems(null);
+        productsTableView.setItems(Inventory.getAllProducts());
     }
 
     // Product add button action

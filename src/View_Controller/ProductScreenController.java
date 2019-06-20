@@ -99,6 +99,20 @@ public class ProductScreenController implements Initializable {
 //    @FXML
 //    private Button associatedPartsDeleteButton;
 
+////////////////
+    // Instance Variables for Temp Parts
+    @FXML
+    private TableView<Part> tempPartsTableView;
+    @FXML
+    private TableColumn<Part, Integer> tempPartsIdTableColumn;
+    @FXML
+    private TableColumn<Part, String> tempPartsNameTableColumn;
+    @FXML
+    private TableColumn<Part, Integer> tempPartsInventoryTableColumn;
+    @FXML
+    private TableColumn<Part, Double> tempPartsPriceTableColumn;
+////////////////
+
     private static Product selectedProduct;
 
     /**
@@ -117,10 +131,11 @@ public class ProductScreenController implements Initializable {
         partsNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
         partsInventoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partsPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+
     }
 
     @FXML
-    void partsSearchButtonAction(ActionEvent event) {
+    private void partsSearchButtonAction(ActionEvent event) {
         //TODO see MS parts to do some handling
 
         String searchTerm = partsSearchTextField.getText();
@@ -135,7 +150,16 @@ public class ProductScreenController implements Initializable {
     }
 
     @FXML
+    private void partsClearSearchButtonAction(ActionEvent event) {
+        partsSearchTextField.clear();
+//        partsTableView.setItems(null);
+        partsTableView.setItems(Inventory.getAllParts());
+    }
+
+    @FXML
     private void partsAddButtonAction() {
+
+        setModifyProduct(productCheck());
         Part associatedPart = (Part) partsTableView.getSelectionModel().getSelectedItem();
 
         // TODO-- if I hit cancel, it shouldn't add it to the Product
@@ -143,6 +167,37 @@ public class ProductScreenController implements Initializable {
         // to the associatedPartsTableView on productsSaveButtonAction
         associatedPartsTableView.getItems().add(associatedPart);
 
+        //TODO temppart ol and tv
+//    tempPartsTableView.getItems().add(associatedPart);
+    }
+
+    private Product productCheck() {
+        int id = Integer.parseInt(productIdTextField.getText());
+        String name = productNameTextField.getText();
+        double price = Double.parseDouble(productPriceTextField.getText());
+        int stock = Integer.parseInt(productInventoryTextField.getText());
+        int min = Integer.parseInt(productMinTextField.getText());
+        int max = Integer.parseInt(productMaxTextField.getText());
+
+        if (min <= max) {
+            if (Inventory.productExists(id)) {
+                Product existingProduct = Inventory.lookupProduct(id);
+                existingProduct.setProductId(id);
+                existingProduct.setProductName(name);
+                existingProduct.setProductPrice(price);
+                existingProduct.setProductStock(stock);
+                existingProduct.setProductMin(min);
+                existingProduct.setProductMax(max);
+
+//            Inventory.updateProduct(id, existingProduct);
+                return existingProduct;
+            } else {
+                Product savedProduct = new Product(name, price, stock, min, max);
+                Inventory.addProduct(savedProduct);
+                return savedProduct;
+            }
+        }
+        return null;
     }
 
     // Product save button action
@@ -157,33 +212,40 @@ public class ProductScreenController implements Initializable {
         int stock = Integer.parseInt(productInventoryTextField.getText());
         int min = Integer.parseInt(productMinTextField.getText());
         int max = Integer.parseInt(productMaxTextField.getText());
-        if (Inventory.productExists(id)) {
-            Product existingProduct = Inventory.lookupProduct(id);
-            existingProduct.setProductId(id);
-            existingProduct.setProductName(name);
-            existingProduct.setProductPrice(price);
-            existingProduct.setProductStock(stock);
-            existingProduct.setProductMin(min);
-            existingProduct.setProductMax(max);
+
+        if (min <= max) {
+            if (Inventory.productExists(id)) {
+                Product existingProduct = Inventory.lookupProduct(id);
+                existingProduct.setProductId(id);
+                existingProduct.setProductName(name);
+                existingProduct.setProductPrice(price);
+                existingProduct.setProductStock(stock);
+                existingProduct.setProductMin(min);
+                existingProduct.setProductMax(max);
 
 //            Inventory.updateProduct(id, existingProduct);
+            } else {
+                Product savedProduct = new Product(name, price, stock, min, max);
+                Inventory.addProduct(savedProduct);
+            }
+
+            // Go back to main screen
+            Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) productSaveButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
         } else {
-//            String name = productNameTextField.getText();
-//            double price = Double.parseDouble(productPriceTextField.getText());
-//            int stock = Integer.parseInt(productInventoryTextField.getText());
-//            int min = Integer.parseInt(productMinTextField.getText());
-//            int max = Integer.parseInt(productMaxTextField.getText());
+            String title = "Warning";
+            String header = "Data input error";
+            String content = "Max value is less than Min value.  Please try again.";
 
-            Product savedProduct = new Product(name, price, stock, min, max);
-            Inventory.addProduct(savedProduct);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
         }
-
-        // Go back to main screen
-        Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainScreen.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) productSaveButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
     }
 
     // Part cancel button action

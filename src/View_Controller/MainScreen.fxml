@@ -33,15 +33,16 @@
                                         <TableColumn fx:id="partsPriceTableColumn" prefWidth="135.0" text="Price/Cost per Unit" />
                                     </columns>
                                 </TableView>
-                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
-                                        <TextField fx:id="partsSearchTextField" onAction="#partsSearchButtonAction" promptText="Search Parts" />
-                                        <Button fx:id="partsSearchButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#partsSearchButtonAction" text="Search" />
                                         <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                             <buttons>
+                                              <TextField fx:id="partsSearchTextField" onAction="#partsSearchButtonAction" prefHeight="25.0" prefWidth="151.0" promptText="Search Parts" />
+                                              <Button fx:id="partsSearchButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#partsSearchButtonAction" text="Search" />
+                                    <Button fx:id="partsClearSearchButton" minWidth="55.0" mnemonicParsing="false" onAction="#partsClearSearchButtonAction" prefHeight="27.0" text="Clear" />
                                                 <Button fx:id="partsAddButton" mnemonicParsing="false" onAction="#partsAddButtonAction" text="Add" />
                                                 <Button fx:id="partsModifyButton" mnemonicParsing="false" onAction="#partsModifyButtonAction" text="Modify" />
-                                                <Button fx:id="partsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#partDeleteButtonAction" text="Delete" />
+                                                <Button fx:id="partsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#partDeleteButtonAction" prefHeight="27.0" text="Delete" />
                                             </buttons>
                                         </ButtonBar>
                                     </children>
@@ -68,10 +69,11 @@
                                 </TableView>
                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                     <children>
-                                        <TextField fx:id="productsSearchTextField" promptText="Search Products" />
-                                        <Button fx:id="productsSearchButton" mnemonicParsing="false" onAction="#productsSearchButtonAction" text="Search" />
                                         <ButtonBar prefHeight="25.0" prefWidth="206.0">
                                             <buttons>
+                                              <TextField fx:id="productsSearchTextField" promptText="Search Products" />
+                                              <Button fx:id="productsSearchButton" mnemonicParsing="false" onAction="#productsSearchButtonAction" text="Search" />
+                                    <Button fx:id="productsClearSearchButton" mnemonicParsing="false" onAction="#productsClearSearchButtonAction" text="Clear" />
                                                 <Button fx:id="productsAddButton" mnemonicParsing="false" onAction="#productsAddButtonAction" text="Add" />
                                                 <Button fx:id="productsModifyButton" mnemonicParsing="false" onAction="#productsModifyButtonAction" text="Modify" />
                                                 <Button fx:id="productsDeleteButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#productsDeleteButtonAction" text="Delete" />
